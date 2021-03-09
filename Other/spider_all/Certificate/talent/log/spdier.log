@@ -1,0 +1,82 @@
+2021-03-08 11:51:24,408|spider      + INFO    ++{'https': '183.166.181.105:51082'}
+2021-03-08 11:51:26,087|spider      + INFO    ++<Response [200]>
+2021-03-08 11:58:31,819|spider      + INFO    ++{'https': '180.160.59.147:27249'}
+2021-03-08 11:58:33,085|spider      + INFO    ++<Response [200]>
+2021-03-08 11:58:35,102|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 11:58:37,543|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:24:39,986|spider      + INFO    ++{'https': '114.100.13.241:28802'}
+2021-03-08 14:24:41,674|spider      + INFO    ++<Response [200]>
+2021-03-08 14:24:43,642|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:31:28,402|spider      + INFO    ++{'https': '60.167.135.179:24877'}
+2021-03-08 14:31:30,011|spider      + INFO    ++<Response [200]>
+2021-03-08 14:31:31,977|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:31:34,703|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:32:36,812|spider      + INFO    ++{'https': '120.42.133.248:34435'}
+2021-03-08 14:32:38,108|spider      + INFO    ++<Response [200]>
+2021-03-08 14:32:40,123|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:33:08,131|spider      + INFO    ++{'https': '119.41.195.44:37370'}
+2021-03-08 14:33:10,039|spider      + INFO    ++<Response [200]>
+2021-03-08 14:33:12,559|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:33:49,438|spider      + INFO    ++{'https': '60.6.72.107:44226'}
+2021-03-08 14:33:51,150|spider      + INFO    ++<Response [200]>
+2021-03-08 14:33:53,583|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:33:53,586|spider      + INFO    ++公司：淳安县水务有限公司，已经存在！！！
+2021-03-08 14:35:21,847|spider      + INFO    ++{'https': '220.176.168.156:54139'}
+2021-03-08 14:35:23,666|spider      + INFO    ++<Response [200]>
+2021-03-08 14:35:26,114|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:35:26,122|spider      + INFO    ++公司：淳安县水务有限公司，已经存在！！！
+2021-03-08 14:36:40,382|spider      + INFO    ++{'https': '60.169.221.191:46736'}
+2021-03-08 14:36:42,086|spider      + INFO    ++<Response [200]>
+2021-03-08 14:36:44,459|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:37:11,363|spider      + INFO    ++{'https': '111.79.184.67:53938'}
+2021-03-08 14:37:13,116|spider      + INFO    ++<Response [200]>
+2021-03-08 14:37:15,473|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:37:15,478|spider      + INFO    ++公司：淳安县水务有限公司，已经存在！！！
+2021-03-08 14:38:33,127|spider      + INFO    ++{'https': '113.75.148.248:52973'}
+2021-03-08 14:38:34,757|spider      + INFO    ++<Response [200]>
+2021-03-08 14:38:36,709|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:38:36,714|spider      + INFO    ++爬取到第13页！！！
+2021-03-08 14:38:36,714|spider      + INFO    ++公司：淳安县水务有限公司，已经存在！！！
+2021-03-08 14:42:21,284|spider      + INFO    ++{'https': '171.80.185.200:50777'}
+2021-03-08 14:42:22,980|spider      + INFO    ++<Response [200]>
+2021-03-08 14:42:25,322|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:42:25,326|spider      + INFO    ++爬取到第13页！！！
+2021-03-08 14:42:25,327|spider      + INFO    ++公司：淳安县水务有限公司，已经存在！！！
+2021-03-08 14:43:52,495|spider      + INFO    ++{'https': '223.244.193.201:45546'}
+2021-03-08 14:43:54,186|spider      + INFO    ++<Response [200]>
+2021-03-08 14:43:56,558|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:43:56,559|spider      + INFO    ++('detail_url:http://rc.zjhz.hrss.gov.cn/articles/detail/37801.html', 'name:卢永博', 'company_name:淳安县水务有限公司')
+2021-03-08 14:43:56,559|spider      + INFO    ++爬取到第13页！！！
+2021-03-08 14:43:56,559|spider      + INFO    ++公司：淳安县水务有限公司，已经存在！！！
+2021-03-08 14:43:59,350|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:43:59,350|spider      + INFO    ++('detail_url:http://rc.zjhz.hrss.gov.cn/articles/detail/37800.html', 'name:郭晓薇', 'company_name:浙江高运交通建设有限公司')
+2021-03-08 14:43:59,351|spider      + INFO    ++爬取到第13页！！！
+2021-03-08 14:43:59,351|spider      + INFO    ++公司：浙江高运交通建设有限公司，已经存在！！！
+2021-03-08 14:44:02,105|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:44:02,106|spider      + INFO    ++('detail_url:http://rc.zjhz.hrss.gov.cn/articles/detail/37799.html', 'name:汪威', 'company_name:浙江菜鸟供应链管理有限公司')
+2021-03-08 14:44:02,106|spider      + INFO    ++爬取到第13页！！！
+2021-03-08 14:44:02,106|spider      + INFO    ++公司：浙江菜鸟供应链管理有限公司，已经存在！！！
+2021-03-08 14:44:04,569|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:44:04,572|spider      + INFO    ++('detail_url:http://rc.zjhz.hrss.gov.cn/articles/detail/37798.html', 'name:张佳炜', 'company_name:浙江大华技术股份有限公司')
+2021-03-08 14:44:04,573|spider      + INFO    ++爬取到第13页！！！
+2021-03-08 14:44:04,573|spider      + INFO    ++公司：浙江大华技术股份有限公司，已经存在！！！
+2021-03-08 14:44:07,437|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:44:07,440|spider      + INFO    ++('detail_url:http://rc.zjhz.hrss.gov.cn/articles/detail/37797.html', 'name:卢凌强', 'company_name:浙江吉润汽车有限公司杭州分公司')
+2021-03-08 14:44:07,440|spider      + INFO    ++爬取到第13页！！！
+2021-03-08 14:44:07,440|spider      + INFO    ++公司：浙江吉润汽车有限公司杭州分公司，已经存在！！！
+2021-03-08 14:44:09,910|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:44:09,913|spider      + INFO    ++('detail_url:http://rc.zjhz.hrss.gov.cn/articles/detail/37796.html', 'name:刘翌', 'company_name:杭实股权投资基金管理（杭州）有限公司')
+2021-03-08 14:44:09,914|spider      + INFO    ++爬取到第13页！！！
+2021-03-08 14:44:09,914|spider      + INFO    ++公司：杭实股权投资基金管理（杭州）有限公司，已经存在！！！
+2021-03-08 14:44:12,350|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:44:12,352|spider      + INFO    ++('detail_url:http://rc.zjhz.hrss.gov.cn/articles/detail/37795.html', 'name:陈观林', 'company_name:浙江大学城市学院')
+2021-03-08 14:44:12,352|spider      + INFO    ++爬取到第13页！！！
+2021-03-08 14:44:12,352|spider      + INFO    ++公司：浙江大学城市学院，已经存在！！！
+2021-03-08 14:44:15,373|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:44:15,376|spider      + INFO    ++('detail_url:http://rc.zjhz.hrss.gov.cn/articles/detail/37794.html', 'name:沈兴连', 'company_name:杭州余杭益民农业生产服务专业合作社')
+2021-03-08 14:44:15,376|spider      + INFO    ++爬取到第13页！！！
+2021-03-08 14:44:15,376|spider      + INFO    ++公司：杭州余杭益民农业生产服务专业合作社，已经存在！！！
+2021-03-08 14:44:18,207|spider      + INFO    ++detail:<Response [200]>
+2021-03-08 14:44:18,209|spider      + INFO    ++('detail_url:http://rc.zjhz.hrss.gov.cn/articles/detail/37793.html', 'name:王天亮', 'company_name:浙江天一堂药业有限公司杭州分公司')
+2021-03-08 14:44:18,210|spider      + INFO    ++爬取到第13页！！！
+2021-03-08 14:44:18,210|spider      + INFO    ++公司：浙江天一堂药业有限公司杭州分公司，已经存在！！！
