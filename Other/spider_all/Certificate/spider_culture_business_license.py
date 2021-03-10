@@ -57,7 +57,7 @@ class Medicine(Base):
 
 
 # 初始化数据库连接:
-engine = create_engine('mysql+mysqlconnector://root:BOOT-xwork1024@192.168.2.99:3306/spider')
+engine = create_engine('mysql+pymysql://root:BOOT-xwork1024@192.168.2.99:3306/spider')
 # 创建DBSession类型:
 DBSession = sessionmaker(bind=engine)
 # 创建session对象:
