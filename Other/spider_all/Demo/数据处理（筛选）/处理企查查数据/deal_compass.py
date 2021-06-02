@@ -76,13 +76,13 @@ def parse_excle():
     # 创建一个sheet对象，一个sheet对象对应Excel文件中的一张表格
     sheet = book.add_sheet("数仓三", cell_overwrite_ok=True)
     from xlrd import open_workbook
-    workbook = open_workbook('../处理企查查数据/个独3-5年服务行业_企查查(52134004).xls')  # 打开excel文件
+    workbook = open_workbook('个独3-5年服务行业_企查查(52134004).xls')  # 打开excel文件
     sheet2 = workbook.sheets()
     print(sheet2)
     num = 1
     sheet2 = workbook.sheet_by_index(0)
     print(sheet2.nrows)
-    # sum = []
+    tup = []
     for i in range(2, sheet2.nrows):
         # if i < 26709 + 1:
         #     continue
@@ -97,52 +97,61 @@ def parse_excle():
         xian = sheet2.cell(i, 8).value
         phone = sheet2.cell(i, 9).value
         more_phone = sheet2.cell(i, 10).value
-        socal_code = sheet2.cell(i, 11).value
-        register_code = sheet2.cell(i, 12).value
-        orangize_code = sheet2.cell(i, 13).value
-        insurance_num = sheet2.cell(i, 14).value
-        company_type = sheet2.cell(i, 15).value
-        industry = sheet2.cell(i, 16).value
-        old_name = sheet2.cell(i, 17).value
-        english_name = sheet2.cell(i, 18).value
-        web = sheet2.cell(i, 19).value
-        addr = sheet2.cell(i, 20).value
-        year_report_addr = sheet2.cell(i, 21).value
-        busi_range = sheet2.cell(i, 22).value
-
+        email = sheet2.cell(i, 11).value
+        more_email = sheet2.cell(i, 12).value
+        socal_code = sheet2.cell(i, 13).value
+        nashuiren_code = sheet2.cell(i, 14).value
+        register_code = sheet2.cell(i, 15).value
+        orangize_code = sheet2.cell(i, 16).value
+        insurance_num = sheet2.cell(i, 17).value
+        company_type = sheet2.cell(i, 18).value
+        industry = sheet2.cell(i, 19).value
+        old_name = sheet2.cell(i, 20).value
+        english_name = sheet2.cell(i, 21).value
+        web = sheet2.cell(i, 22).value
+        addr = sheet2.cell(i, 23).value
+        year_report_addr = sheet2.cell(i, 24).value
+        busi_range = sheet2.cell(i, 25).value
+        tup = []
 
         if '-' not in phone:
             sum = [company_name, business_status, natural_person, reg_money, apply_date,hezhun_date,province, city, xian,
-                   phone,socal_code,register_code,orangize_code,insurance_num
+                   phone,email,more_email,socal_code,nashuiren_code,register_code,orangize_code,insurance_num
                 , company_type, industry, old_name,english_name,web,addr,year_report_addr,busi_range]
             for index, s in enumerate(sum):
                 sheet.write(num, index, s)  #
+            tup.append(phone)
             num += 1
         if '-' in more_phone and '；'not in more_phone:
             continue
         if more_phone != '-' and '；' not in more_phone:
-            sum = [company_name, business_status, natural_person, reg_money, apply_date, hezhun_date, province, city,
-                   xian,
-                   more_phone, socal_code, register_code, orangize_code, insurance_num
-                , company_type, industry, old_name, english_name, web, addr, year_report_addr, busi_range]
-            for index, s in enumerate(sum):
-                sheet.write(num, index, s)  #
-            num += 1
+            if more_phone not in tup:
+
+                sum = [company_name, business_status, natural_person, reg_money, apply_date, hezhun_date, province, city,
+                       xian,
+                       more_phone, email,more_email,socal_code,nashuiren_code, register_code, orangize_code, insurance_num
+                    , company_type, industry, old_name, english_name, web, addr, year_report_addr, busi_range]
+                for index, s in enumerate(sum):
+                    sheet.write(num, index, s)  #
+                num += 1
+                tup.append(more_phone)
 
         if '；' in more_phone:
             more_phone = more_phone.split('；')
             for m in more_phone:
                 if '-' in m:
                     continue
-                sum = [company_name, business_status, natural_person, reg_money, apply_date, hezhun_date, province,
-                       city,
-                       xian,
-                       m, socal_code, register_code, orangize_code, insurance_num
-                    , company_type, industry, old_name, english_name, web, addr, year_report_addr, busi_range]
-                for index, s in enumerate(sum):
-                    sheet.write(num, index, s)  #
-                num += 1
+                if m not in tup:
 
+                    sum = [company_name, business_status, natural_person, reg_money, apply_date, hezhun_date, province,
+                           city,
+                           xian,
+                           m, email,more_email,socal_code, nashuiren_code,register_code, orangize_code, insurance_num
+                        , company_type, industry, old_name, english_name, web, addr, year_report_addr, busi_range]
+                    for index, s in enumerate(sum):
+                        sheet.write(num, index, s)  #
+                    tup.append(m)
+                    num += 1
     book.save("3-5-data.xls")
 
     #     if ',' in phone:

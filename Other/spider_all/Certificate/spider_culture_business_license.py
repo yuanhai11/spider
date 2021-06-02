@@ -74,7 +74,7 @@ proxys = []
 
 
 def dl():
-    dlurl = 'http://dps.kdlapi.com/api/getdps/?orderid=969607686104916&num=1&pt=2&sep=1'
+    dlurl = 'http://api.goubanjia.com/dynamic/get/d490a5d4debefc8980ae6ee4c4148552.html?sep=3'
 
     resp = requests.get(dlurl).text
     time.sleep(2)

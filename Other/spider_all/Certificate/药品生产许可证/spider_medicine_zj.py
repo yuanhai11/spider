@@ -70,21 +70,21 @@ def get_updated():
 
 def main():
     # bloom = get_updated()
-    # url = 'http://mpa.zjfda.gov.cn/xzsp!ypscxkz.do'
+    url = 'http://mpa.zjfda.gov.cn/xzsp!ypscxkz.do'
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
     }
-    # data = {
-    #     'pAttr3.infoSize': 1000,
-    #     'pAttr3.pageCur': 1,
-    # }
-    # response = requests.request(method='post', url=url, headers=headers,data=data,timeout=30).text
-    # codes = re.findall(r'<input type="button" value="详情" .*?onclick="spGotourl(.*?)" />.*?</td>',response,re.S)
+    data = {
+        'pAttr3.infoSize': 1000,
+        'pAttr3.pageCur': 1,
+    }
+    response = requests.request(method='post', url=url, headers=headers,data=data,timeout=30).text
+    codes = re.findall(r'<input type="button" value="详情" .*?onclick="spGotourl(.*?)" />.*?</td>',response,re.S)
     import json
-    with open('codes.json','r',encoding='utf-8')as fp:
-        # fp.write(json.dumps(codes,ensure_ascii=False))
-        codes = json.loads(fp.read())
-        # exit()
+    with open('codes.json','w',encoding='utf-8')as fp:
+        fp.write(json.dumps(codes,ensure_ascii=False))
+        # codes = json.loads(fp.read())
+        exit()
     for index,code in enumerate(codes):
         code = code.split(',')[-1].replace(')"','')[:-1][1:-1]
         url = "http://mpa.zjfda.gov.cn/xzsp!ypscxkzDetail.do?id={}".format(code)
