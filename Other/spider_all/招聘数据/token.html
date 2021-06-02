@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>请稍后</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes bossLoading {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            50% {
+                transform: translate3d(0, -10px, 0);
+            }
+        }
+
+        .data-tips {
+            text-align: center;
+            height: 100%;
+            position: relative;
+            background: #fff;
+            top: 50%;
+            margin-top: -37px;
+        }
+
+        .data-tips .boss-loading {
+            width: 100%;
+        }
+
+        .data-tips .boss-loading p {
+            margin-top: 10px;
+            color: #9fa3b0;
+        }
+
+        .boss-loading .component-b,
+        .boss-loading .component-s1,
+        .boss-loading .component-o,
+        .boss-loading .component-s2 {
+            display: inline-block;
+            width: 40px;
+            height: 42px;
+            line-height: 42px;
+            font-family: Helvetica Neue, Helvetica, Arial, Hiragino Sans GB, Hiragino Sans GB W3, Microsoft YaHei UI, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+            font-weight: bolder;
+            font-size: 40px;
+            color: #eceef2;
+            vertical-align: top;
+            -webkit-animation-fill-mode: both;
+            -webkit-animation: bossLoading 0.6s infinite linear alternate;
+            -moz-animation: bossLoading 0.6s infinite linear alternate;
+            animation: bossLoading 0.6s infinite linear alternate;
+        }
+
+        .boss-loading .component-o {
+            -webkit-animation-delay: 0.1s;
+            -moz-animation-delay: 0.1s;
+            animation-delay: 0.1s;
+        }
+
+        .boss-loading .component-s1 {
+            -webkit-animation-delay: 0.2s;
+            -moz-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+
+        .boss-loading .component-s2 {
+            -webkit-animation-delay: 0.3s;
+            -moz-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+        }
+    </style>
+</head>
+<body>
+<div class="data-tips">
+    <div class="tip-inner">
+        <div class="boss-loading">
+            <span class="component-b">B</span><span class="component-o">O</span><span class="component-s1">S</span><span
+                class="component-s2">S</span>
+            <p class="gray">正在加载中...</p>
+        </div>
+    </div>
+</div>
+<script>
+    var securityPageName = "securityCheck";
+    (function () {
+        var e = new Image;
+        var t = window.location.href;
+        var n = t.split("srcReferer").length - 1;
+        e.src = "https://t.zhipin.com/f.gif?pk=" + securityPageName + "&len=" + n + "&r=" + document.referrer
+    })();
+    (function () {
+        var p = 0;
+        var g = (new Date).getTime();
+        var e = window.navigator.userAgent;
+        var w;
+        if (e.indexOf("MSIE ") > -1) {
+            w = true
+        }
+
+        function n(i) {
+            var o = function () {
+                var e = location.hostname;
+                if (e === "localhost" || /^(\d+\.){3}\d+$/.test(e)) {
+                    return e
+                }
+                return "." + e.split(".").slice(-2).join(".")
+            }();
+            var e = function (e, t) {
+                var n = e;
+                var r = document.createElement("script");
+                r.setAttribute("type", "text/javascript");
+                r.setAttribute("charset", "UTF-8");
+                r.onload = r.onreadystatechange = function () {
+                    if (!w || this.readyState == "loaded" || this.readyState == "complete") {
+                        t()
+                    }
+                };
+                r.setAttribute("src", e);
+                if (i.tagName != "IFRAME") {
+                    i.appendChild(r)
+                } else if (i.contentDocument) {
+                    if (i.contentDocument.body) {
+                        i.contentDocument.body.appendChild(r)
+                    } else {
+                        i.contentDocument.documentElement.appendChild(r)
+                    }
+                } else if (i.document) {
+                    if (i.document.body) {
+                        i.document.body.appendChild(r)
+                    } else {
+                        i.document.documentElement.appendChild(r)
+                    }
+                }
+            };
+            var t = function (e) {
+                var t = new RegExp("(^|&)" + e + "=([^&]*)(&|$)");
+                var n = window.location.search.substr(1).match(t);
+                if (n != null) return unescape(n[2]);
+                return null
+            };
+            var c = {
+                get: function (e) {
+                    var t, n = new RegExp("(^| )" + e + "=([^;]*)(;|$)");
+                    if (t = document.cookie.match(n)) {
+                        return unescape(t[2])
+                    } else {
+                        return null
+                    }
+                }, set: function (e, t, n, r, a) {
+                    var i = e + "=" + encodeURIComponent(t);
+                    if (n) {
+                        var o = new Date(n).toGMTString();
+                        i += ";expires=" + o
+                    }
+                    i = r ? i + ";domain=" + r : i;
+                    i = a ? i + ";path=" + a : i;
+                    document.cookie = i
+                }
+            };
+            var s = {
+                config: {
+                    url: "",
+                    whiteHostList: /^(.+\.zhipin\.com)$/,
+                    blackPathList: ["security-check.html", "security-check1.html"]
+                }, setStrategy: function () {
+                    var e = s.config.url;
+                    switch (true) {
+                        case s.isBlackHost(e) || s.hasBlackPath(e):
+                            s.config.url = "/";
+                            break
+                    }
+                    return s.config.url
+                }, isAbsolutePathStartable: function (e) {
+                    return e.indexOf("//") < 0 && e.indexOf("/") === 0
+                }, isBlackHost: function (i) {
+                    var o = false;
+                    var e = /^(https?)?(:?\/\/+)([^\/?]*)(.*)?$/;
+                    i.replace(e, function (e, t, n, r, a) {
+                        o = !s.isHostInWhiteList(r);
+                        console.error("hostname", r, "isBlackHost", o);
+                        return o ? "/" : i
+                    });
+                    return o
+                }, hasBlackPath: function (e) {
+                    var t = false;
+                    var n = s.config.blackPathList;
+                    for (var r = 0; r < n.length; r++) {
+                        if (e.indexOf(n[r]) > -1) {
+                            t = true;
+                            break
+                        }
+                    }
+                    return t
+                }, isHostInWhiteList: function (e) {
+                    return s.config.whiteHostList.test(e)
+                }, filter: function (e) {
+                    s.config.url = decodeURIComponent(e || "/");
+                    return s.setStrategy()
+                }
+            };
+            var u = function (e) {
+                var t = s.filter(e);
+                window.location.replace(t)
+            };
+            var l = function (e, t) {
+                if (t || e.indexOf("security-check.html") > -1) {
+                    u(t)
+                } else {
+                    u(e)
+                }
+                var n = new Image;
+                n.src = "https://t.zhipin.com/f.gif?pk=" + securityPageName + "&ca=securityCheckJump_" + Math.round(((new Date).getTime() - g) / 1e3) + "&r=" + document.referrer
+            };
+            var n = window.location.href;
+            var f = t("seed") || "";
+            var d = t("ts");
+            var r = t("name");
+            var m = t("callbackUrl");
+            var h = t("srcReferer") || "";
+            if (r === "null" || !f || !r || !m) {
+                var a = new Image;
+                a.src = "https://t.zhipin.com/f.gif?pk=" + securityPageName + "&ca=securityCheckUrlFile&url=" + window.location.href
+            }
+            if (f && d && r) {
+                var v = setInterval(function () {
+                    p++;
+                    if (p > 5) {
+                        clearInterval(v)
+                    }
+                    var e = new Image;
+                    e.src = "https://t.zhipin.com/f.gif?pk=" + securityPageName + "&ca=securityCheckTimer_" + Math.round(((new Date).getTime() - g) / 1e3) + "&r=" + document.referrer
+                }, 1e4);
+                e("security-js/" + r + ".js", function () {
+                    var e = (new Date).getTime() + 32 * 60 * 60 * 1e3 * 2;
+                    var t = "";
+                    var n = {};
+                    var r = window.ABC || i.contentWindow.ABC;
+                    try {
+                        t = (new r).z(f, parseInt(d) + (480 + (new Date).getTimezoneOffset()) * 60 * 1e3)
+                    } catch (e) {
+                    }
+                    if (t && m) {
+                        c.set("__zp_stoken__", t, e, o, "/");
+                        if (typeof window.wst != "undefined" && typeof wst.postMessage == "function") {
+                            n = {
+                                name: "setWKCookie",
+                                params: {
+                                    url: o,
+                                    name: "__zp_stoken__",
+                                    value: encodeURIComponent(t),
+                                    expiredate: e,
+                                    path: "/"
+                                }
+                            };
+                            window.wst.postMessage(JSON.stringify(n))
+                        }
+                        l(h, m)
+                    } else {
+                        var a = new Image;
+                        a.src = "https://t.zhipin.com/f.gif?pk=" + securityPageName + "&ca=securityCheckNoCode_" + Math.round(((new Date).getTime() - g) / 1e3) + "&r=" + document.referrer;
+                        u("/")
+                    }
+                })
+            }
+        }
+
+        var r = !!(window.attachEvent && !window.opera);
+        var a = /webkit\/(\d+)/i.test(navigator.userAgent) && RegExp.$1 < 525;
+        var i = [];
+        var o = function () {
+            for (var e = 0; e < i.length; e++) i[e]()
+        };
+
+        function t(e) {
+            if (!r && !a && document.addEventListener) return document.addEventListener("DOMContentLoaded", e, false);
+            if (i.push(e) > 1) return;
+            if (r) (function () {
+                try {
+                    document.documentElement.doScroll("left");
+                    o()
+                } catch (e) {
+                    setTimeout(arguments.callee, 0)
+                }
+            })(); else if (a) var t = setInterval(function () {
+                if (/^(loaded|complete)$/.test(document.readyState)) clearInterval(t), o()
+            }, 0)
+        }
+
+        t(function () {
+            var e = window.navigator.userAgent.toLowerCase();
+            if (e.match(/micromessenger/i) == "micromessenger" || e.match(/wkwebview/i) == "wkwebview") {
+                n(document.getElementsByTagName("head").item(0));
+                return
+            }
+            var t = document.createElement("iframe");
+            t.style.height = 0;
+            t.style.width = 0;
+            t.style.margin = 0;
+            t.style.padding = 0;
+            t.style.border = "0 none";
+            t.name = "zhipinFrame";
+            t.src = "about:blank";
+            if (t.attachEvent) {
+                t.attachEvent("onload", function () {
+                    n(t)
+                })
+            } else {
+                t.onload = function () {
+                    n(t)
+                }
+            }
+            (document.body || document.documentElement).appendChild(t)
+        })
+    })();
+
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?194df3105ad7148dcf2b98a91b5e727a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

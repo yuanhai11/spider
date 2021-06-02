@@ -109,9 +109,9 @@ def main():
     bloom = get_updated()
     for page in range(13, 201):  # 根据更新频率，正常情况下一周统一更新一次，以前30页为准
 
-        url = 'http://rc.zjhz.hrss.gov.cn/articles/2/page/{}.html'.format(page)
+        url = 'https://rc.hzrs.hangzhou.gov.cn/articles/2/page/{}.html'.format(page)
         response_web = ""
-        for IP in range(20):
+        while 1:
             try:
                 response_web = requests.request(method='get', url=url, headers=headers, proxies=proxys[-1],
                                                 timeout=15)

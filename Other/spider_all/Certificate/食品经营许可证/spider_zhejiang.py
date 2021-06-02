@@ -133,18 +133,18 @@ def main():
     # exit()
     # bloom = get_updated()
     with open('浙江-data.json', encoding='utf-8')as fp:
-        data = json.loads(fp.read())[220000:240000]
+        data = json.loads(fp.read())[650000:700000]
     print(len(data))
 
     for index, company_name in enumerate(data):
-        # if company_name == '嵊州市富润溪东批发部':
+        # if company_name == '海宁市斜桥镇杨宇水果店':
         #     print(index)
         #     exit()
         # continue
         # if company_name not in bloom:
         flag = 0
-        if index < 11663 + 1:  # 从这开始
-            continue
+        # if index < 36383 + 1:  # 从这开始
+        #     continue
         url = 'http://223.4.77.249:8050/SearchHandler.ashx?Flag=getSearchDataList&tabid=2E398671-CA45-BFF7-DF09-5884E0288432&page=1&keyword={}'.format(
             company_name)
         response = ""
