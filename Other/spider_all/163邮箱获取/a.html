@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+    <title>网易邮箱文件中心</title>
+    <link rel="stylesheet" href="https://mimg.127.net/hd/lib/nui/js5/130604/css_v1/overlay_nui.css">
+    <link rel="stylesheet" href="https://mimg.127.net/xm/all2/filecenter/1410091429/css/global.css">
+    <script>window.$lang = {
+        "lang_136": "正在续传",
+        "lang_135": "正在上传",
+        "lang_134": "待续传，请稍候",
+        "lang_133": "待上传，请稍候",
+        "lang_132": "扫描完毕，开始上传",
+        "lang_131": "扫描中，已完成",
+        "lang_130": "扫描中，请稍候",
+        "lang_129": "待扫描，请稍候",
+        "lang_128": "网页文件",
+        "lang_127": "文档文件",
+        "lang_126": "图片文件",
+        "lang_125": "所有文件",
+        "lang_124": "错误",
+        "lang_123": "文件",
+        "lang_122": "文件大小超过超大附件总限制",
+        "lang_118": "附件大小超过限制，单个附件不得超过@@",
+        "lang_117": "文件大小超过网盘总限制",
+        "lang_116": "文件大小超过网盘限制",
+        "lang_115": "使用帮助",
+        "lang_114": "文件大小超过限制，请查看",
+        "lang_113": "文件内容为空",
+        "lang_112": "文件类型受限",
+        "lang_111": "操作系统支持",
+        "lang_110": "上述浏览器插件目前只限于",
+        "lang_109": "谷歌浏览器",
+        "lang_108": "火狐浏览器",
+        "lang_107": "浏览器，世界之窗等",
+        "lang_106": "内核模式浏览器，如",
+        "lang_105": "当前浏览器不支持安装本功能插件，请使用以下浏览器",
+        "lang_104": "网易邮箱插件",
+        "lang_103": "使用此功能，需要先",
+        "lang_102": "安装过程可能会离开本页面，当前如有信件内容将被保存到草稿箱",
+        "lang_101": "在邮件正文中插入本地图片",
+        "lang_100": "复制粘贴文件成为附件",
+        "lang_311_2": "超长保护期",
+        "lang_311_1": "会员尊享",
+        "lang_275_2": "个字符",
+        "lang_275_1": "长度不能大于",
+        "lang_264_3": "吗？",
+        "lang_264_2": "个",
+        "lang_264_1": "您确定要删除选中的",
+        "lang_236_1": "温馨提醒：网盘服务升级，升级期间（6月2日~6月7日）文件分享功能暂停使用",
+        "lang_200_1": "下载",
+        "lang_99": "直接拖曳文件到写信窗口成为附件",
+        "lang_358": "知道了",
+        "lang_98": "截屏功能",
+        "lang_357": "点击文件续期即可进行批量操作~",
+        "lang_97": "超大附件",
+        "lang_356": "选择多个文件",
+        "lang_96": "发送",
+        "lang_355": "超大附件保存更长久~",
+        "lang_95": "后您可以",
+        "lang_354": "会员尊享50天超长保存期",
+        "lang_94": "升级",
+        "lang_353": "在线管家",
+        "lang_93": "安装",
+        "lang_352": "查看存储空间",
+        "lang_92": "安装成功后可马上使用新功能！",
+        "lang_351": "若仍有疑问，可咨询会员专属",
+        "lang_91": "请按照浏览器底部下载栏提示，按“继续”安装插件。",
+        "lang_350": "您可前往",
+        "lang_90": "安装成功后选择立即重启浏览器即可使用该功能！",
+        "lang_349": "会员尊享权益",
+        "lang_89": "请按照浏览器顶部安装栏提示，按“允许”安装插件。",
+        "lang_348": "立即开通邮箱会员，单个附件上限提至6G，更享超多会员权益>>",
+        "lang_335_2": "重试",
+        "lang_88": "邮箱插件提示",
+        "lang_347": "立即开通邮箱会员，提高附件存储空间，更享超多会员权益>>",
+        "lang_335_1": "图片加载失败，请",
+        "lang_87": "建议您上传到超大附件再发送",
+        "lang_346": "开通邮箱会员",
+        "lang_86": "不合法",
+        "lang_85": "指定目录",
+        "lang_344": "查看存储空间详情",
+        "lang_84": "小时",
+        "lang_343": "，",
+        "lang_83": "天",
+        "lang_342": "捕捉相应的文件，装满行囊，出发吧！",
+        "lang_82": "已存在同名的文件夹",
+        "lang_341": "网易邮箱提供在线存储服务，您可以在文件中心进行文件存储、下载等管理",
+        "lang_81": "接口",
+        "lang_340": "文件中心里什么也没有",
+        "lang_80": "对应的",
+        "lang_339": "没有下一张啦",
+        "lang_79": "页码",
+        "lang_338": "没有上一张啦",
+        "lang_78": "类别",
+        "lang_337": "缩放比例",
+        "lang_77": "没有与",
+        "lang_336": "载入中",
+        "lang_76": "请您选择需要下载的附件！",
+        "lang_335": "图片加载失败，请重试",
+        "lang_75": "请您选择需要转发的附件！",
+        "lang_146_2": "至",
+        "lang_334": "正在努力加载",
+        "lang_74": "您选择的附件大小超过限制！",
+        "lang_146_1": "即刻升级",
+        "lang_333": "关闭",
+        "lang_73": "系统提示",
+        "lang_332": "上一张",
+        "lang_72": "准备就绪",
+        "lang_331": "下一张",
+        "lang_299": "无法进行附件搜索，",
+        "lang_71": "正在缓冲",
+        "lang_330": "自适应",
+        "lang_298": "附件功能未开通，",
+        "lang_70": "正在快退",
+        "lang_297": "日",
+        "lang_296": "月",
+        "lang_295": "未命名",
+        "lang_294": "部分文件不属于当前分类，已上传至网盘",
+        "lang_293": "文件夹名称不能为空",
+        "lang_292": "请输入文件夹名称",
+        "lang_291": "输入文件夹名称",
+        "lang_290": "网易免费邮箱图片分享",
+        "lang_329": "原图",
+        "lang_69": "正在快进",
+        "lang_328": "旋转",
+        "lang_68": "播放中",
+        "lang_327": "新窗口打开",
+        "lang_67": "已暂停",
+        "lang_326": "年",
+        "lang_66": "已停止",
+        "lang_325": "请输入搜索关键字！",
+        "lang_65": "正在连接",
+        "lang_324": "反选",
+        "lang_64": "播放音乐",
+        "lang_323": "不选",
+        "lang_63": "预览文件",
+        "lang_322": "全选",
+        "lang_62": "预览压缩包",
+        "lang_321": "搜索图片",
+        "lang_289": "网易免费邮箱图片收藏",
+        "lang_61": "预览文档",
+        "lang_320": "停止",
+        "lang_288": "文件已保存至网盘",
+        "lang_60": "预览图片",
+        "lang_287": "转存到",
+        "lang_286": "备注成功",
+        "lang_285": "备注不能为空",
+        "lang_284": "您已输入字，还能输入字",
+        "lang_283": "备注",
+        "lang_282": "修改",
+        "lang_281": "添加",
+        "lang_280": "您确定要删除备注吗？",
+        "lang_284_3": "字",
+        "lang_284_2": "字，还能输入",
+        "lang_284_1": "您已输入",
+        "lang_319": "分享给易信好友",
+        "lang_59": "无错误码",
+        "lang_318": "共享链接",
+        "lang_58": "已加密，请先解密！",
+        "lang_317": "保存至网盘",
+        "lang_57": "您的请求失效，请重新登录邮箱。",
+        "lang_316": "音乐播放出现问题，请重试",
+        "lang_56": "操作超时，请重新刷新邮箱。",
+        "lang_315": "上传完毕",
+        "lang_55": "解析出错",
+        "lang_314": "开通网易超级会员，升级更多特权",
+        "lang_54": "网络异常",
+        "lang_313": "开通网易超级会员，超大附件免费升级",
+        "lang_53": "请求错误",
+        "lang_312": "升级保存期限到",
+        "lang_52": "服务异常",
+        "lang_311": "保存期限为",
+        "lang_279": "删除确认",
+        "lang_51": "未知错误",
+        "lang_310": "续费网易超级会员",
+        "lang_278": "删除备注",
+        "lang_50": "错误码",
+        "lang_277": "文件改名成功",
+        "lang_276": "请不要输入等特殊字符。",
+        "lang_275": "长度不能大于个字符",
+        "lang_274": "文件名称不能为空",
+        "lang_273": "取消分享后，好友无法再访问此分享链接。",
+        "lang_272": "您确认要取消分享吗？",
+        "lang_271": "文件分享",
+        "lang_270": "文件移动成功",
+        "lang_309": "尊敬的超级会员，您的保存期限已升级至",
+        "lang_49": "请求发送失败",
+        "lang_308": "个文件",
+        "lang_48": "请求结束。",
+        "lang_307": "文件备注",
+        "lang_47": "请求开始",
+        "lang_306": "改名",
+        "lang_46": "文件中心已加锁，请先解锁",
+        "lang_305": "加载中",
+        "lang_45": "服务器内部异常",
+        "lang_304": "永久存储",
+        "lang_44": "对象实例化异常",
+        "lang_303": "开通申请已提交，我们稍后为您开通。",
+        "lang_43": "格式化异常",
+        "lang_302": "立即开通",
+        "lang_42": "反序列化异常",
+        "lang_301": "文件中心提示",
+        "lang_41": "帐号验证失败",
+        "lang_269": "移动到",
+        "lang_300": "请进入实验室开通。",
+        "lang_40": "缺少参数",
+        "lang_268": "搜索结果",
+        "lang_267": "删除文件成功",
+        "lang_266": "删除文件夹成功",
+        "lang_265": "删除文件",
+        "lang_264": "您确定要删除选中的个吗？",
+        "lang_263": "文件夹",
+        "lang_262": "您确定要删除“”吗？",
+        "lang_261": "文件删除后，邮件接收人将无法下载，您确定要删除吗？",
+        "lang_260": "超大附件不能批量下载",
+        "lang_39": "参数错误",
+        "lang_38": "下载异常",
+        "lang_37": "服务器异常",
+        "lang_36": "积分服务器内部异常",
+        "lang_35": "积分不够",
+        "lang_34": "随身邮没有激活",
+        "lang_33": "没有绑定手机号码邮箱",
+        "lang_32": "用户在云存储系统没有激活",
+        "lang_31": "访问超大附件服务器时，验证失败",
+        "lang_259": "部分文件续期次数超过限制",
+        "lang_30": "访问超大附件服务器时，",
+        "lang_258": "文件续期次数超过限制",
+        "lang_257": "文件续期成功",
+        "lang_256": "文件夹不能直接进行邮件发送",
+        "lang_254": "临时存储",
+        "lang_253": "获取文件失败",
+        "lang_252": "没有选中任何文件，请重新选择",
+        "lang_251": "提取密码",
+        "lang_250": "下载地址",
+        "lang_29": "超大附件服务器内部出错",
+        "lang_28": "访问超大附件服务器出错",
+        "lang_27": "配置不存在",
+        "lang_26": "云存储用户",
+        "lang_25": "云存储服务器上传异常",
+        "lang_24": "此文件夹名称已存在",
+        "lang_23": "异常",
+        "lang_22": "访问云存储服务器时，",
+        "lang_21": "云存储服务器内部出错",
+        "lang_249": "和你分享网易文件中里的文件。",
+        "lang_20": "访问云存储服务器出错",
+        "lang_248": "多媒体",
+        "lang_247": "幻灯片",
+        "lang_246": "表格",
+        "lang_245": "文本",
+        "lang_244": "全部",
+        "lang_243": "大小",
+        "lang_242": "文件名",
+        "lang_241": "返回上一级",
+        "lang_240": "我发给TA的",
+        "lang_19": "文件中心",
+        "lang_18": "重复命名",
+        "lang_17": "模板",
+        "lang_16": "非法类型",
+        "lang_15": "取消",
+        "lang_14": "确定",
+        "lang_13": "标题",
+        "lang_12": "网易相册",
+        "lang_11": "附件图集",
+        "lang_239": "TA发给我的",
+        "lang_10": "邮箱附件",
+        "lang_238": "输入安全锁密码查看全部",
+        "lang_237": "部分文件夹处于加锁状态，无法查看加锁文件夹邮件中的附件。",
+        "lang_236": "温馨提醒：请遵守著作权法，尊重著作权人合法权益，不得违法上传、存储并分享他人作品",
+        "lang_235": "下一页",
+        "lang_234": "上一页",
+        "lang_233": "邮箱图片现在可以收藏或分享到手机易信啦！",
+        "lang_232": "搜索所有文件",
+        "lang_199": "分享",
+        "lang_231": "移动",
+        "lang_198": "收藏",
+        "lang_230": "筛选",
+        "lang_262_2": "”吗？",
+        "lang_197": "点击",
+        "lang_262_1": "您确定要删除“",
+        "lang_196": "选中此文件",
+        "lang_195": "重试",
+        "lang_194": "上传失败",
+        "lang_193": "上传成功",
+        "lang_192": "准备中",
+        "lang_191": "超大附件",
+        "lang_190": "大于的文件将上传至超大附件，系统已自动续传该文件",
+        "lang_9": "我的分享",
+        "lang_8": "其他",
+        "lang_229": "新建文件夹",
+        "lang_7": "压缩包",
+        "lang_228": "上传文件",
+        "lang_6": "视频",
+        "lang_227": "全部图片",
+        "lang_5": "音乐",
+        "lang_226": "显示所有邮箱附件的图片",
+        "lang_4": "文档",
+        "lang_225": "只看大图",
+        "lang_3": "图片",
+        "lang_224": "的图片",
+        "lang_2": "网盘",
+        "lang_223": "只显示大于",
+        "lang_1": "返回收件箱",
+        "lang_222": "转发",
+        "lang_0": "网易邮箱文件中心",
+        "lang_189": "扩容",
+        "lang_221": "人人网",
+        "lang_188": "上传。",
+        "lang_220": "腾讯微博",
+        "lang_187": "设置成功，请重新进入",
+        "lang_186": "安装邮箱插件上传，或者切换到普通模式",
+        "lang_185": "暂时无法响应，建议你",
+        "lang_184": "检查到你的",
+        "lang_183": "无法获取上传路径，请重新登录后重试。",
+        "lang_182": "网易邮箱附件上传插件",
+        "lang_181": "选择要上传的文件",
+        "lang_180": "你已上传过同名文件，本文件已自动改名以避免覆盖旧文件",
+        "lang_190_3": "系统已自动续传该文件",
+        "lang_190_2": "的文件将上传至超大附件",
+        "lang_190_1": "大于",
+        "lang_219": "空间",
+        "lang_218": "网易微博",
+        "lang_217": "新浪微博",
+        "lang_216": "分享到易信朋友圈",
+        "lang_215": "或者直接分享到",
+        "lang_214": "提取码",
+        "lang_213": "您可以通过复制链接发送给好友进行分享哦！",
+        "lang_212": "没有符合大尺寸的附件图片",
+        "lang_179": "文件名冲突",
+        "lang_211": "没有搜索到相关文件",
+        "lang_178": "上传失败，错误码",
+        "lang_210": "没有相关文件，装点什么吧？",
+        "lang_177": "附件扫描超时",
+        "lang_255_3": "升级保存期限到",
+        "lang_176": "上传超时",
+        "lang_255_2": "您可以",
+        "lang_175": "网络错误",
+        "lang_255_1": "文件的保存期限为",
+        "lang_174": "服务器响应错误",
+        "lang_173": "文件可能被其他程序占用",
+        "lang_172": "服务器",
+        "lang_171": "服务器连接错误",
+        "lang_170": "浏览器错误",
+        "lang_209": "时间",
+        "lang_208": "发件人",
+        "lang_207": "预览",
+        "lang_206": "（未上传完成）",
+        "lang_205": "更多操作",
+        "lang_204": "取消分享",
+        "lang_203": "文件续期",
+        "lang_202": "来自邮件",
+        "lang_169": "浏览器信息丢失，请重新登录邮箱",
+        "lang_201": "删除",
+        "lang_168": "此文件存在不良信息，禁止上传",
+        "lang_200": "下载",
+        "lang_167": "文件大小超过超大附件总限制",
+        "lang_166": "附件大小或流量超过限制",
+        "lang_165": "附件流量超过限制",
+        "lang_164": "附件大小超过限制",
+        "lang_163": "系统不支持多次同时重复上传同一个文件",
+        "lang_162": "超大附件服务器因网络问题已暂停上传，请手动重试",
+        "lang_161": "登录超时，请重新登录邮箱",
+        "lang_160": "插件版本过低，请使用标准添加附件方式选择大文件",
+        "lang_276_2": "等特殊字符。",
+        "lang_276_1": "请不要输入",
+        "lang_159": "服务器返回格式错误",
+        "lang_158": "网盘已满，请升级容量后重试",
+        "lang_157": "超出网盘单个文件大小上限",
+        "lang_156": "文件已存在",
+        "lang_155": "请重试",
+        "lang_154": "上传目录不存在，请刷新页面后重试",
+        "lang_153": "登录失效，请重新登录邮箱后重试",
+        "lang_152": "未知错误，请重试",
+        "lang_151": "以下附件尚未上传完成，请先删除或者续传附件",
+        "lang_150": "超大附件容量将满，建议清理后再继续上传文件",
+        "lang_149": "文件上传",
+        "lang_148": "尝试上传到临时存储",
+        "lang_147": "附件上传提示",
+        "lang_146": "即刻升级至！",
+        "lang_144": "附件上传失败",
+        "lang_143": "正在检查容量，请稍候",
+        "lang_142": "正在尝试速传，请稍候",
+        "lang_141": "快速上传中",
+        "lang_140": "您选择的附件将在点击发送后进行上传",
+        "lang_139": "已存在此文件，快速上传完成",
+        "lang_138": "续传完成",
+        "lang_137": "上传完成"
+    };</script>
+    <script language="javascript" src="//mimg.127.net/mailapi/webmailapi-2.9.5.min.utf8.js"></script>
+    <script src="//mimg.127.net/p/tools/mailstats-sdk/mailstats.umd-1.1.3.js"></script>
+    <script type="text/javascript" src="//mimg.127.net/p/app/filecenter/5.1.0b2109101044/lib.js"></script>
+    <script type="text/javascript">            var gEnvironment = {
+        sid: 'YDsWKoUOqJrimVgMXeOOmLaujCOsLXWJ',
+        uid: 'zl360jizhang@163.com',
+        host: location.hostname,
+        domain: '163.com',
+        fullDomain: 'mail.163.com',
+        isFree: true,
+        isVip: false,
+        ursCookie: 'CTdKZzCmoIni5DMkcrEH3D.evEu_mnMOrnIxc3xgMHHNMmy6MT5QSOIC_LtKb2JqC3hdiTgc1tRTqhQ_2dfui45exuNHf0Ix2LOAcrP7.oQpfoRIDnu9nEqNkvT_EFOaw9zJiIbJc9aa.n72ON4UUYZylDZU1czMSwc07o1Kn5oe98v9oHc6tSiitqZvKQoCEXezg4ZqJEh0fa3NDBeBxRPRf',
+        searchData: {
+            key: '',
+            fid: '',
+            sentDate: '',
+            attType: '',
+            attn: '',
+            skipLockedFolders: '',
+            fromAddress: '',
+            from: '',
+            toAddress: '',
+            to: ''
+        }
+    };
+    var gCustom = '';
+    var gTop = window.top;
+    try {
+        var bStu = parent.$G.mailPattern.currentPattern == "student" ? true : false;
+        if (bStu) {
+            gTop = window.parent;
+        }
+    } catch (e) {
+    }
+
+    function fGotoMbox() {
+        parent.$E('interface.MboxInterface', function (MboxInterface) {
+            MboxInterface.entry({'fid': 1});
+        });
+    }
+
+    var mailStats;
+    if (window.MailStats) {
+        mailStats = new window.MailStats({dataSource: 'mail'});
+        mailStats.config({application: 'free_MailFilecenter_b09f0893bb1e6269', uid: 'zl360jizhang@163.com'})
+    }        </script>
+    <script type="text/javascript" src="//mimg.127.net/p/app/filecenter/5.1.0b2109101044/p1.js"></script>
+    <!-- <script type="text/javascript" src="//mimg.127.net/xm/all2/preview/preview-1.8.5.min.js"></script> -->
+    <script type="text/javascript" src="//mimg.127.net/hd/lib/share/share.js"></script>
+    <style>.SKY-volume-info {
+        overflow: hidden;
+    }
+
+    .SKY-volume-info-text {
+        float: left;
+    }
+
+    .SKY-volume-info-opt {
+        float: right;
+        position: relative;
+    }
+
+    .SKY-gCmp-main-header-attach-member-label {
+        display: inline-block;
+        color: #A1600B;
+        background: -webkit-gradient(linear, right top, left top, color-stop(12.07%, #fdc876), color-stop(72.37%, #fde0a8));
+        background: -webkit-linear-gradient(right, #fdc876 12.07%, #fde0a8 72.37%);
+        background: -moz-linear-gradient(right, #fdc876 12.07%, #fde0a8 72.37%);
+        background: -o-linear-gradient(right, #fdc876 12.07%, #fde0a8 72.37%);
+        background: linear-gradient(270deg, #fdc876 12.07%, #fde0a8 72.37%);
+        height: 18px;
+        line-height: 18px;
+        border-radius: 2px;
+        padding: 0 4px;
+        margin: 0 4px;
+    }
+
+    .ua-ie8 .SKY-gCmp-main-header-attach-member-label, .ua-ie9 .SKY-gCmp-main-header-attach-member-label {
+        background-color: #fdc876;
+    }</style>
+    <link type="text/css" rel="stylesheet" href="//mimg.127.net/p/tools/member-intro/memberintro-1.0.0.css"/>
+    <script src="//mimg.127.net/p/tools/member-intro/memberintro-1.0.0.js"></script>
+</head>
+<body>
+<div id="dvAside" class="g-aside" style="min-height:618px;">
+    <div class="g-aside-inner">
+        <style>.SKY-nav-back {
+            height: 28px;
+            margin-top: 20px
+        }
+
+        .SKY-nav-back-link {
+            display: block;
+            height: 28px;
+            line-height: 28px;
+            text-indent: 20px;
+            color: #1F8919
+        }
+
+        .SKY-nav-back-link:hover {
+            background-color: #DEDEDE;
+            text-decoration: none
+        }</style>
+        <div id="nav_back" class="SKY-nav-back" style="display:none"><a href="javascript:void(0)"
+                                                                        onclick="fGotoMbox();return false;"
+                                                                        class="SKY-nav-back-link">&lt;&lt;返回收件箱</a>
+            <div class="SKY-nav-split"></div>
+        </div>            <!-- 锟斤拷锟斤拷 -->
+        <div class="SKY-nav" id="navbar">
+            <div class="SKY-nav-item">
+                <div class="SKY-nav-item-label" id="nav_allFile"><span class="SKY-nav-item-icon"><b
+                        class="nui-ico pFile-ico pFile-ico-netFolder"></b></span> <span
+                        class="SKY-nav-item-text">网盘</span></div>
+                <div class="SKY-nav">
+                    <div class="SKY-nav-item">
+                        <div class="SKY-nav-item-label" id="nav_image"><span class="SKY-nav-item-icon"><b
+                                class="nui-ico pFile-ico pFile-ico-pic"></b></span> <span
+                                class="SKY-nav-item-text">图片</span></div>
+                    </div>
+                    <div class="SKY-nav-item">
+                        <div class="SKY-nav-item-label" id="nav_doc"><span class="SKY-nav-item-icon"><b
+                                class="nui-ico pFile-ico pFile-ico-doc"></b></span> <span
+                                class="SKY-nav-item-text">文档</span></div>
+                    </div>
+                    <div class="SKY-nav-item">
+                        <div class="SKY-nav-item-label" id="nav_music"><span class="SKY-nav-item-icon"><b
+                                class="nui-ico pFile-ico pFile-ico-music"></b></span> <span
+                                class="SKY-nav-item-text">音乐</span></div>
+                    </div>
+                    <div class="SKY-nav-item">
+                        <div class="SKY-nav-item-label" id="nav_video"><span class="SKY-nav-item-icon"><b
+                                class="nui-ico pFile-ico pFile-ico-video"></b></span> <span
+                                class="SKY-nav-item-text">视频</span></div>
+                    </div>
+                    <div class="SKY-nav-item">
+                        <div class="SKY-nav-item-label" id="nav_rar"><span class="SKY-nav-item-icon"><b
+                                class="nui-ico pFile-ico pFile-ico-zip"></b></span> <span
+                                class="SKY-nav-item-text">压缩包</span></div>
+                    </div>
+                    <div class="SKY-nav-item">
+                        <div class="SKY-nav-item-label" id="nav_other"><span class="SKY-nav-item-icon"><b
+                                class="nui-ico pFile-ico pFile-ico-other"></b></span> <span
+                                class="SKY-nav-item-text">其他</span></div>
+                    </div>
+                    <div class="SKY-nav-item">
+                        <div class="SKY-nav-item-label" id="nav_record"><span class="SKY-nav-item-icon"><b
+                                class="nui-ico pFile-ico pFile-ico-share"></b></span> <span class="SKY-nav-item-text">我的分享</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="SKY-nav-split"></div>
+            <div class="SKY-nav-item">
+                <div class="SKY-nav-item-label" id="nav_attach"><span class="SKY-nav-item-icon"><b
+                        class="nui-ico pFile-ico pFile-ico-attach"></b></span> <span
+                        class="SKY-nav-item-text">邮箱附件</span></div>
+                <div class="SKY-nav">
+                    <div class="SKY-nav-item">
+                        <div class="SKY-nav-item-label" id="nav_waterfall_inner"><span class="SKY-nav-item-icon"><b
+                                class="nui-ico pFile-ico pFile-ico-grid"></b></span> <span class="SKY-nav-item-text">附件图集</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="SKY-nav-split"></div>
+            <div class="SKY-nav-item">
+                <div class="SKY-nav-item-label" id="nav_album"><span class="SKY-nav-item-icon"><b
+                        class="nui-ico pFile-ico pFile-ico-album"></b></span> <span
+                        class="SKY-nav-item-text">网易相册</span></div>
+            </div>
+        </div>            <!-- 锟斤拷锟斤拷锟斤拷息 -->
+        <div id="navCapacity" class="SKY-volume"></div>
+    </div>
+</div>    <!-- 锟斤拷要锟斤拷锟斤拷 -->
+<div id='mainContent' class="g-main"></div>
+<div id='dvMask' class="nui-mask" style="display:none"></div>
+<div class="pFile-skin">
+    <div class="pFile-skin-left"></div>
+</div>
+<script type="text/javascript">    if (location.protocol == 'https:') {
+    document.getElementById("nav_album").style.display = "none"
+}    </script>
+</body>
+</html>
