@@ -178,7 +178,7 @@ if __name__ == '__main__':
         content = json.loads(fp.read())
     index = 0
     for index, d in enumerate(content):
-        if d[0] == '3443402897': #  下波数据 2345168332
+        if d[0] == '2335292783': #  下波数据 3273721985
             logger.info("当前数据的索引位置:{} ".format(index))
             break
     data = content[index + 1:index + 100000]
