@@ -256,7 +256,6 @@ def check_data():
 def icp_lists():
     head = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
-        # 'cookie': 'toolbox_words=www.meshplus.cn; cz_statistics_visitor=230cb358-83e2-a7fc-e7e9-6293fc07ca4a; toolbox_urls=cjpa.top|www.github.com|www.easywork.cc; Hm_lvt_ca96c3507ee04e182fb6d097cb2a1a4c=1635233931,1635733347; bbsmax_user=a5159a82-5db9-57c0-ac43-633b8aebfc15; qHistory=aHR0cDovL3dob2lzLmNoaW5hei5jb20vc3VmZml4X+acgOaWsOazqOWGjOWfn+WQjeafpeivonxodHRwOi8vdG9vbC5jaGluYXouY29tX+ermemVv+W3peWFt3xodHRwOi8vd2hvaXMuY2hpbmF6LmNvbS9fV2hvaXPmn6Xor6J8aHR0cDovL2lwLnRvb2wuY2hpbmF6LmNvbS9zaXRlaXAvX0lQ5omA5Zyo5Zyw5om56YeP5p+l6K+ifGh0dHA6Ly9pcC50b29sLmNoaW5hei5jb20vaXBiYXRjaC9fSVDmibnph4/mn6Xor6J8aHR0cDovL2lwLnRvb2wuY2hpbmF6LmNvbV9JUC9JUHY25p+l6K+i77yM5pyN5Yqh5Zmo5Zyw5Z2A5p+l6K+i; UM_distinctid=17d0342bc42beb-07b7c8107a287d-57b193e-1fa400-17d0342bc43cf4; .AspNetCore.Session=CfDJ8HYK3EI1AOtMlCLLQCwiGxyYBgBI412%2BF7u5kUUvZjEE2Ri6x41FtIqSJlCZeDXo0AuM5SkT8i0pWl%2BR0xwYiQErfCvr3jzKW0hhnX41tQEQ4UA1SdVFpCp1R0Zab1A1uEvZWazmoIbI0I%2BeLl%2BDPqOIW8weUSDYgKVFLDOrwngd; .AspNetCore.Antiforgery.2htDGZ9yTBg=CfDJ8HYK3EI1AOtMlCLLQCwiGxzANIkc2xvqn80AMAA6BVJIeioHDIFbQQTIVvPcYCfm8PzO43oJ-mVtxid2fU8O4YbjEUWz5CgxvCZnhhga3VJSOVDYPk9fhphNwpDqN1xqrrq_-L0T6jpO-3hJO1zaYeM; CNZZDATA5082706=cnzz_eid%3D503046556-1635288334-http%253A%252F%252Ftool.chinaz.com%252F%26ntime%3D1636442162; Hm_lpvt_ca96c3507ee04e182fb6d097cb2a1a4c=1636443379'
     }
     # 循环100次，因为最大限制100
     for page in range(1,101):
@@ -264,30 +263,24 @@ def icp_lists():
             'pageNo': page,
             'pageSize': 20,
             # day 代表当天
-            'day':0
+            'day':7
         }
+        time.sleep(5)
         tex = requests.post(url="http://icp.chinaz.com/Provinces/PageData",data=data,headers=head).json().get("data")
         print(tex)
-        exit()
         if len(tex)==0:
+            time.sleep(10)
             continue
-        for te in tex:
-            print(te)
-        exit()
-
         merge_sum = []
 
-
-        for i in con:
-            sum = i.replace('"',"").split(',')
-
-            site_domain = sum[0]
-            company_name =sum[1]
-            company_type =sum[2]
-            main_page =sum[5]
-            site_license =sum[3]
-            site_name =sum[4]
-            verify =sum[6]
+        for sum in tex:
+            site_domain = sum.get("host")
+            company_name =sum.get("comName")
+            company_type =sum.get("typ")
+            main_page ="".join(sum.get("lstHp")).replace("[","").replace("]","")
+            site_license =sum.get("permit")
+            site_name =sum.get("webName")
+            verify =sum.get("verifyTime")
 
             merge = company_name+site_license+verify
 
@@ -298,35 +291,10 @@ def icp_lists():
             medi = Medicine(site_domain=site_domain,company_name=company_name,company_type=company_type,main_page=main_page,site_license=site_license,site_name=site_name,verify_time=verify,gmt_created=times,gmt_updated=times)
 
             session.add(medi)
-
-            print(sum)
             merge_sum.append(merge)
 
         session.commit()
         session.close()
-
-'''
-call_uibot()
-'''
-# def call_uibot():
-#     """
-#     唤起uibot 并执行
-#     :return:
-#     """
-#     windows_type = "Chrome_WidgetWin_1"
-#     windows_name = "UiBot Creator"
-#     from ctypes import windll
-#     MAP_KEYS = windll.user32.MapVirtualKeyA
-#     h_wnd = win32gui.FindWindow(windows_type, windows_name)
-#     win32gui.ShowWindow(h_wnd, win32con.SW_RESTORE)
-#     time.sleep(.5)
-#     win32gui.SetActiveWindow(h_wnd)
-#     time.sleep(.5)
-#     win32gui.SetForegroundWindow(h_wnd)
-#     time.sleep(.5)
-#     win32api.keybd_event(win32con.VK_F5, MAP_KEYS(116, 0), 0, 0)  # 按下 F5
-#     win32api.keybd_event(win32con.VK_F5, MAP_KEYS(116, 0), win32con.WM_KEYUP, 0)
-
 
 def dns_provider():
     head = {
@@ -363,28 +331,12 @@ def get_js(domain):
     ctx = execjs.compile(htmlstr)
     return str(ctx.call('generateHostKey', domain))
 
-
 if __name__ == '__main__':
-    import os
-    # local_time = time.strftime("%Y-%m-%d", time.localtime())
-    # local_time = '2021-11-08'
-    # 1.
-    # source_path = r"C:\Users\20945\Desktop\locked.txt"
-    # if not os.path.exists(source_path):
-    #     with open(source_path, mode='w', encoding="utf-8") as f:
-    #         f.write("1")
-    #
-    # # call_uibot()
-    # while 1:
-    #     if not os.path.exists(r"C:\Users\20945\Desktop\locked.txt"):
-    #         lists()
-    #         print("in")
-    #         break
-    #     print("out")
-    #     time.sleep(10)
+    local_time = time.strftime("%Y-%m-%d", time.localtime())
+    local_time = '2021-11-12'
     icp_lists()
 
-    dns_provider()
+    # dns_provider()
     # 2.
     # check_data()
     # 4.

@@ -197,43 +197,46 @@ class Operation():
         company_s = []
         companys = self.session.query(table_icp_leads).filter(table_icp_leads.verify_time == self.local_time).all()
         for q in companys:
-            sum = []
-            name = q.company_name
-            if name in company_s:
+            try:
+                sum = []
+                name = q.company_name
+                if name in company_s:
+                    continue
+                company_info_data = self.session.query(table_company_info).filter(
+                    table_company_info.company_name == name).first()
+                if company_info_data == None:
+                    continue
+                mobile = company_info_data.mobile
+                mobiles = company_info_data.mobiles
+                if mobiles != None:
+                    mobiles = json.loads(company_info_data.mobiles)
+                    sum = [m['pN'] for m in mobiles]
+
+                reg_money = company_info_data.reg_money
+                insurance_num = company_info_data.insurance_num
+                business_project = company_info_data.business_project
+                company_type = company_info_data.company_type
+
+                if mobile != None:
+                    sum.append(mobile)
+                sum = ','.join(list(set(sum)))
+
+                icp = self.session.query(table_icp_leads).filter(table_icp_leads.company_name == name).all()
+                for i in icp:
+
+                    i.eg_capital = reg_money
+                    i.social_staff_num = insurance_num
+                    i.business_scope = business_project
+                    i.company_org_type = company_type
+                    i.phone = sum
+                    if mobiles == None:
+                        i.phone_source = ''
+                    else:
+                        i.phone_source = str(mobiles)
+                    print(name, 'over')
+                company_s.append(name)
+            except Exception:
                 continue
-            company_info_data = self.session.query(table_company_info).filter(
-                table_company_info.company_name == name).first()
-            if company_info_data == None:
-                continue
-            mobile = company_info_data.mobile
-            mobiles = company_info_data.mobiles
-            if mobiles != None:
-                mobiles = json.loads(company_info_data.mobiles)
-                sum = [m['pN'] for m in mobiles]
-
-            reg_money = company_info_data.reg_money
-            insurance_num = company_info_data.insurance_num
-            business_project = company_info_data.business_project
-            company_type = company_info_data.company_type
-
-            if mobile != None:
-                sum.append(mobile)
-            sum = ','.join(list(set(sum)))
-
-            icp = self.session.query(table_icp_leads).filter(table_icp_leads.company_name == name).all()
-            for i in icp:
-
-                i.eg_capital = reg_money
-                i.social_staff_num = insurance_num
-                i.business_scope = business_project
-                i.company_org_type = company_type
-                i.phone = sum
-                if mobiles == None:
-                    i.phone_source = ''
-                else:
-                    i.phone_source = str(mobiles)
-                print(name, 'over')
-            company_s.append(name)
 
         self.session.commit()
 
@@ -308,7 +311,7 @@ class Operation():
             id = company.id
             domain = "https://whois.chinaz.com/" + company.site_domain
             driver.get(domain)
-            time.sleep(10)
+            time.sleep(7)
             try:
                 ele_lists = driver.find_element_by_xpath('//div[@class="block ball"]/span')
                 text = ele_lists.text
@@ -349,13 +352,13 @@ class Operation():
 if __name__ == '__main__':
     while 1:
         local_time = time.strftime("%Y-%m-%d", time.localtime())
-        local_time = '2021-11-09'
+        local_time = '2021-11-12'
         operation = Operation(local_time)
         # operation.call_uibot()
         while 1:
             if not os.path.exists(r"C:\Users\20945\Desktop\locked.txt"):
                 # operation.icp_lists()
-                # operation.check_data()
+                operation.check_data()
                 operation.web()
                 # operation.tyc_data_match()
 

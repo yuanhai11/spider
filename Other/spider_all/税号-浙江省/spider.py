@@ -83,15 +83,24 @@ def dl():
         dl()
 
 def add_white():
-    confirm_ip_url = 'http://soft.data5u.com/wl/myip/fba1729fce7d27397dc2db1dc5db9977.html'
-    confirm_ip = requests.get(url=confirm_ip_url, headers=headers).text
-    white_lists_url = 'http://soft.data5u.com/wl/mywhitelist/fba1729fce7d27397dc2db1dc5db9977.html'
-    white_lists_data = requests.get(url=white_lists_url, headers=headers).text
-    if confirm_ip not in white_lists_data:
-        add_white_url = 'http://soft.data5u.com/wl/setip/fba1729fce7d27397dc2db1dc5db9977.html?ips={}&clear=true'.format(
-            confirm_ip)
-        res = requests.get(url=add_white_url, headers=headers).text
-        time.sleep(70)
+    while 1:
+        try:
+            confirm_ip_url = 'http://soft.data5u.com/wl/myip/fba1729fce7d27397dc2db1dc5db9977.html'
+            confirm_ip = requests.get(url=confirm_ip_url, headers=headers).text
+            white_lists_url = 'http://soft.data5u.com/wl/mywhitelist/fba1729fce7d27397dc2db1dc5db9977.html'
+            time.sleep(3)
+            white_lists_data = requests.get(url=white_lists_url, headers=headers).text
+            if confirm_ip not in white_lists_data:
+                add_white_url = 'http://soft.data5u.com/wl/setip/fba1729fce7d27397dc2db1dc5db9977.html?ips={}&clear=true'.format(
+                    confirm_ip)
+                time.sleep(10)
+                res = requests.get(url=add_white_url, headers=headers).text
+                print("add white IP success ，please waiting 70 seconds")
+                time.sleep(70)
+                break
+        except Exception:
+            time.sleep(2)
+            continue
 
 def main():
     dl()
@@ -114,7 +123,7 @@ def main():
                     dl()
             except Exception as e:
                 print(e)
-                if 'Tunnel connection failed: 407 Proxy Authentication Required' in e:
+                if 'Tunnel connection failed: 407 Proxy Authentication Required' in str(e):
                     add_white()
                 dl()
 
@@ -160,7 +169,7 @@ if __name__ == '__main__':
         content = json.loads(fp.read())
     index = 0
     for index, d in enumerate(content):
-        if d[0] == '3333310254': # 2345168332
+        if d[0] == '2345168332': # 3273721985
             print("当前数据的索引位置:{} ".format(index))
             break
     data = content[index + 1:index + 100000]
