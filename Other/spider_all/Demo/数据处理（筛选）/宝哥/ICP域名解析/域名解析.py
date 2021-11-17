@@ -352,12 +352,12 @@ class Operation():
 if __name__ == '__main__':
     while 1:
         local_time = time.strftime("%Y-%m-%d", time.localtime())
-        local_time = '2021-11-12'
+        # local_time = '2021-11-12'
         operation = Operation(local_time)
-        # operation.call_uibot()
+        operation.call_uibot()
         while 1:
             if not os.path.exists(r"C:\Users\20945\Desktop\locked.txt"):
-                # operation.icp_lists()
+                operation.icp_lists()
                 operation.check_data()
                 operation.web()
                 # operation.tyc_data_match()

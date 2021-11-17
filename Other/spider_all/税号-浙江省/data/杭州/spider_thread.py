@@ -178,10 +178,11 @@ if __name__ == '__main__':
         content = json.loads(fp.read())
     index = 0
     for index, d in enumerate(content):
-        if d[0] == '2335292783': #  下波数据 3273721985
+        if d[0] == '3273721985': #  下波数据 75678768
             logger.info("当前数据的索引位置:{} ".format(index))
             break
-    data = content[index + 1:index + 100000]
+
+    data = content[index + 1:index + 200000]
     print(data)
     # exit()
     bloom = get_bloom()
@@ -190,6 +191,8 @@ if __name__ == '__main__':
     logger.info("剩余公司数量：{}".format(le))
     # print(db_data)
     # exit()
+
+
     for q in db_data:
         company_queue.put(q)
     import threading
@@ -207,4 +210,10 @@ if __name__ == '__main__':
     thread2.join()
     thread3.join()
     thread4.join()
+
+
+
+
+
+
 

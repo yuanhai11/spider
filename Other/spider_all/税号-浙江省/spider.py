@@ -169,7 +169,7 @@ if __name__ == '__main__':
         content = json.loads(fp.read())
     index = 0
     for index, d in enumerate(content):
-        if d[0] == '2345168332': # 3273721985
+        if d[0] == '2345168332': # 75678768
             print("当前数据的索引位置:{} ".format(index))
             break
     data = content[index + 1:index + 100000]
