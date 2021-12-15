@@ -382,4 +382,4 @@ if __name__ == '__main__':
     scheduler.add_job(start_job,'cron',id="start_job",day='1-31', hour=22, minute=0)
     # scheduler.add_job(start_job,'interval',seconds=5)
     scheduler.start()
-
+    print("你好啊")
