@@ -40,21 +40,6 @@ def parse():
             title_9 = sheet2.cell(i, 10).value
 
             title_10 = sheet2.cell(i, 11).value
-            title_11 = sheet2.cell(i, 12).value
-            title_12 = sheet2.cell(i, 13).value
-            title_13 = sheet2.cell(i, 14).value
-            title_14 = sheet2.cell(i, 15).value
-            title_15 = sheet2.cell(i, 16).value
-            title_16 = sheet2.cell(i, 17).value
-            title_17 = sheet2.cell(i, 18).value
-            title_18 = sheet2.cell(i, 19).value
-            title_19 = sheet2.cell(i, 20).value
-            title_20 = sheet2.cell(i, 21).value
-            title_21 = sheet2.cell(i, 22).value
-            title_22 = sheet2.cell(i, 23).value
-            title_23 = sheet2.cell(i, 24).value
-            title_24 = sheet2.cell(i, 25).value
-
             phone = title_8
             more_phone = title_9
             ss = []

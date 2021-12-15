@@ -5,9 +5,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from ctypes import windll
-from model.table import table_icp_leads,table_company_info
+from model.table import table_icp_leads, table_company_info
+from apscheduler.schedulers.blocking import BlockingScheduler
 
-import time, re, json,os
+import time, re, json, os
 import requests
 import datetime
 # 加入pywintypes，打包成功
@@ -19,7 +20,7 @@ import win32gui
 
 class Operation():
 
-    def __init__(self,local_time):
+    def __init__(self, local_time):
         # 创建对象的基类:
         self.Base = declarative_base()
         # 初始化数据库连接:
@@ -35,7 +36,7 @@ class Operation():
 
         self.headers = {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
-            'cookie': 'TYCID=435e2b701e3f11eb93fd6b29e729c6c7; ssuid=8413289216; _ga=GA1.2.1495606244.1604454265; __insp_slim=1608615852663; __insp_wid=677961980; __insp_nv=true; __insp_targlpt=5LyB5Lia6K6k6K_BIC0g5aSp55y85p_l; __insp_targlpu=aHR0cHM6Ly93d3cudGlhbnlhbmNoYS5jb20vY2xhaW0vZW50cnkvMjk5MDIxNzc2NA%3D%3D; __insp_norec_sess=true; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2247184373%22%2C%22first_id%22%3A%22175cea83fe26fa-0ea05bfb98414a-930346c-2073600-175cea83fe3ccd%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22%24device_id%22%3A%22175cea83fe26fa-0ea05bfb98414a-930346c-2073600-175cea83fe3ccd%22%7D; creditGuide=1; tyc-user-phone=%255B%252218069882328%2522%252C%2522188%25203707%25206355%2522%252C%2522153%25209583%25201367%2522%255D; _bl_uid=p8kXdv0pakeq4hbakedphdz4ywO0; aliyungf_tc=d09840a7aa56823825fb2d9acb3798687b73faa261f70e063a37140d2fc37431; csrfToken=jAoic4Rp0MKRm9vZQ8pY39BK; bannerFlag=true; Hm_lvt_e92c8d65d92d534b0fc290df538b4758=1634088403,1635758009; _gid=GA1.2.823123114.1635758009; RTYCID=fc26b95c5e7e4397a9a535e7da3cd1b6; CT_TYCID=05b5a96a365d4f70919b974d8fd951f1; acw_tc=781bad4216358223650144573e50ddab76c69f0be2333352ba75583ec037ec; acw_sc__v2=6180ab1dcde77a65556c2d575628714e095db13d; tyc-user-info-save-time=1635822374934; auth_token=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxODA2OTg4MjMyOCIsImlhdCI6MTYzNTgyMjM3MywiZXhwIjoxNjY3MzU4MzczfQ.kom1B9MFkpyoRdN2s_HCshf35IZAbRp-N5BdlumjhJNVSWNeWmUofydTHUVAZcn5IDnJwzvjD9W8HbH6_DASEA; tyc-user-info={%22isExpired%22:%220%22%2C%22mobile%22:%2218069882328%22%2C%22state%22:%225%22%2C%22vipManager%22:%220%22}; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2247184373%22%2C%22first_id%22%3A%22175cea83fe26fa-0ea05bfb98414a-930346c-2073600-175cea83fe3ccd%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22%24device_id%22%3A%22175cea83fe26fa-0ea05bfb98414a-930346c-2073600-175cea83fe3ccd%22%7D; cloud_token=fd05a8490c884b78b735f7266d6930e9; cloud_utm=d530866748f84852a8e42525d5b7310b; relatedHumanSearchGraphId=3486767098; relatedHumanSearchGraphId.sig=JI8LutPeOvRWp3-mOuJV8Af-coS9vBZzW_VGXbMDdNw; searchSessionId=1635822806.39474733; _gat_gtag_UA_123487620_1=1; Hm_lpvt_e92c8d65d92d534b0fc290df538b4758=1635822807'
+            'cookie':'TYCID=435e2b701e3f11eb93fd6b29e729c6c7; ssuid=8413289216; _ga=GA1.2.1495606244.1604454265; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2247184373%22%2C%22first_id%22%3A%22175cea83fe26fa-0ea05bfb98414a-930346c-2073600-175cea83fe3ccd%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22%24device_id%22%3A%22175cea83fe26fa-0ea05bfb98414a-930346c-2073600-175cea83fe3ccd%22%7D; tyc-user-phone=%255B%252218069882328%2522%252C%2522188%25203707%25206355%2522%252C%2522153%25209583%25201367%2522%255D; _bl_uid=p8kXdv0pakeq4hbakedphdz4ywO0; aliyungf_tc=d09840a7aa56823825fb2d9acb3798687b73faa261f70e063a37140d2fc37431; csrfToken=jAoic4Rp0MKRm9vZQ8pY39BK; bannerFlag=true; __insp_wid=677961980; __insp_slim=1636082473876; __insp_nv=true; __insp_targlpu=aHR0cHM6Ly93d3cudGlhbnlhbmNoYS5jb20vY2xhaW0vZW50cnkvNTAxNjMyMTQy; __insp_targlpt=5LyB5Lia6K6k6K_BIC0g5aSp55y85p_l; __insp_norec_sess=true; Hm_lvt_e92c8d65d92d534b0fc290df538b4758=1635758009,1635823826; creditGuide=1; relatedHumanSearchGraphId=5243947963; relatedHumanSearchGraphId.sig=UowRes9NMOYd5w0jBpNGvhEcnawcmbNcdc0dwISQF3I; _gid=GA1.2.2008545.1637542812; searchSessionId=1637542812.63712088; RTYCID=2f6ad8f6f8484131963d98fad4295c36; CT_TYCID=878dbde8452c4594bb1af6f8c09649b5; acw_tc=2f6fc12116375480750016628e66daae71c04e567eb8828e168762e307b21f; tyc-user-info={%22isExpired%22:%220%22%2C%22mobile%22:%2218069882328%22%2C%22state%22:%225%22%2C%22vipManager%22:%220%22}; tyc-user-info-save-time=1637548092390; auth_token=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxODA2OTg4MjMyOCIsImlhdCI6MTYzNzU0ODA4OSwiZXhwIjoxNjY5MDg0MDg5fQ.8CEfYg-5DtJ9laknykTY9dhQWdtgtfYvyp8NFzRex6ERHrz-ZFdDdP7QmD-2z99ACACnR_PnkzL5wrLl9cep9w; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2247184373%22%2C%22first_id%22%3A%22175cea83fe26fa-0ea05bfb98414a-930346c-2073600-175cea83fe3ccd%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22%24device_id%22%3A%22175cea83fe26fa-0ea05bfb98414a-930346c-2073600-175cea83fe3ccd%22%7D; cloud_token=8fef4f037b2242a4866d2fb265de5d9f; cloud_utm=1a4987e9349a4e41abaf4835214f8606; Hm_lpvt_e92c8d65d92d534b0fc290df538b4758=1637548094'
         }
 
     '''
@@ -65,12 +66,13 @@ class Operation():
     def tyc_data_match(self):
         self.dl()
         companys = self.session.query(table_icp_leads).filter(
-            and_(table_icp_leads.phone == None, table_icp_leads.eg_capital == None,
-                 table_icp_leads.verify_time == local_time, table_icp_leads.company_type != '个人')).all()
+            and_(table_icp_leads.phone == None, table_icp_leads.eg_capital == None,table_icp_leads.id>14150,
+                 table_icp_leads.company_type != '个人')).all()
         print(len(companys))
         for index, co in enumerate(companys):
             # if index<12:
             #     continue
+
             company = co.company_name
             company_copy = company.replace('(', '').replace(')', '').replace('）', '').replace('（', '')
             if company in self.main_company_list:
@@ -91,11 +93,14 @@ class Operation():
                     time.sleep(1.5)
                     # print(res)
                     # exit()
-                    if '<title>天眼查校验</title>' not in res:
-                        break
-                    print('search-------login')
-                    time.sleep(10)
-                    self.dl()
+                    if '<title>天眼查校验</title>' in res:
+                        print('-------触发了login，请等待1min之内更换cookie')
+                        time.sleep(60)
+                        continue
+                    if 'setCookie(name,value)' in res:
+                        self.dl()
+                        continue
+                    break
                 except Exception as e:
                     print(e)
                     self.dl()
@@ -132,8 +137,11 @@ class Operation():
                 res = response.text
 
                 if '<title>天眼查校验</title>' in res:
-                    print('detail-------login')
-                    time.sleep(10)
+                    print('-------触发了login，请等待1min之内更换cookie')
+                    time.sleep(60)
+                    self.dl()
+                    continue
+                if 'setCookie(name,value)' in res:
                     self.dl()
                     continue
                 # print(res)
@@ -153,7 +161,7 @@ class Operation():
      获取详情页，进行解析并入库
      '''
 
-    def get_detail(url, company, id, self):
+    def get_detail(self,url, company, id):
         response = self.request_data(url)
         reg_capital = ''.join(
             response.xpath('//table[@class="table -striped-col -breakall"]/tbody/tr[3]/td[last()]//text()'))
@@ -184,7 +192,7 @@ class Operation():
             medi.phone_source = phone_source
             medi.business_scope = business_scope
             self.session.commit()
-            print(company, reg_capital + '----', social_staff_num + '----', company_org_type + '----', phone + '----',
+            print(id,company, reg_capital + '----', social_staff_num + '----', company_org_type + '----', phone + '----',
                   phone_source, business_scope)
 
         self.main_company_list.append(company)
@@ -296,8 +304,7 @@ class Operation():
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)
         # 以设定好的方式打开谷歌浏览器
-        driver = webdriver.Chrome(executable_path=r'E:\chrome_downloading\chromedriver_win32 (1)\chromedriver.exe',
-                                  options=options)
+        driver = webdriver.Chrome(executable_path=r'E:\Environment\chromedriver_win32\chromedriver.exe')
         driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
             "source": """
                Object.defineProperty(navigator, 'webdriver', {
@@ -306,21 +313,27 @@ class Operation():
          """
         })
         companys = self.session.query(table_icp_leads).filter(
-            and_(table_icp_leads.verify_time == self.local_time, table_icp_leads.site_domain != None)).all()
+            and_(table_icp_leads.verify_time == self.local_time, table_icp_leads.site_domain != None,
+                 table_icp_leads.dns_provider == None)).all()
         for company in companys:
-            id = company.id
-            domain = "https://whois.chinaz.com/" + company.site_domain
-            driver.get(domain)
-            time.sleep(7)
             try:
-                ele_lists = driver.find_element_by_xpath('//div[@class="block ball"]/span')
-                text = ele_lists.text
-                print(domain, text)
+                id = company.id
+                try:
+                    domain = "https://whois.chinaz.com/" + company.site_domain
+                    driver.get(domain)
+                    time.sleep(7)
+                    ele_lists = driver.find_element_by_xpath('//div[@class="block ball"]/span')
+                    text = ele_lists.text
+                    print(domain, text)
+                except Exception:
+                    continue
+                con = self.session.query(table_icp_leads).filter(table_icp_leads.id == id).first()
+                con.dns_provider = text
+                self.session.commit()
             except Exception:
-                continue
-            con = self.session.query(table_icp_leads).filter(table_icp_leads.id == id).first()
-            con.dns_provider = text
-            self.session.commit()
+                print("断网保护，休眠100s")
+                time.sleep(100)
+
         self.session.close()
         driver.close()
 
@@ -329,7 +342,7 @@ class Operation():
     '''
 
     def call_uibot(self):
-
+        print("执行uibot程序")
         source_path = r"C:\Users\20945\Desktop\locked.txt"
         if not os.path.exists(source_path):
             with open(source_path, mode='w', encoding="utf-8") as f:
@@ -348,24 +361,25 @@ class Operation():
         win32api.keybd_event(win32con.VK_F5, MAP_KEYS(116, 0), 0, 0)  # 按下 F5
         win32api.keybd_event(win32con.VK_F5, MAP_KEYS(116, 0), win32con.WM_KEYUP, 0)
 
+def start_job():
+    local_time = time.strftime("%Y-%m-%d", time.localtime())
+    # local_time = '2021-12-14'
+    print("开始入库：时间====》{} ".format(local_time))
+    operation = Operation(local_time)
+    operation.call_uibot()
+    if not os.path.exists(r"C:\Users\20945\Desktop\locked.txt"):
+        operation.icp_lists()
+        operation.check_data()
+        operation.web()
+        # operation.tyc_data_match()
+        print("时间：{} --- 结束".format(local_time))
+        # scheduler.remove_job("start_job")
 
 if __name__ == '__main__':
-    while 1:
-        local_time = time.strftime("%Y-%m-%d", time.localtime())
-        # local_time = '2021-11-12'
-        operation = Operation(local_time)
-        operation.call_uibot()
-        while 1:
-            if not os.path.exists(r"C:\Users\20945\Desktop\locked.txt"):
-                operation.icp_lists()
-                operation.check_data()
-                operation.web()
-                # operation.tyc_data_match()
-
-                t = datetime.datetime.replace(datetime.datetime.now() + datetime.timedelta(days=1), hour=22, minute=0,
-                                              second=0)
-                print("休眠中，！！！明天 22:00 点运行》")
-                time.sleep((t - datetime.datetime.now()).total_seconds())
-                break
-            time.sleep(60)
+    global local_time
+    # BlockingScheduler
+    scheduler = BlockingScheduler()
+    scheduler.add_job(start_job,'cron',id="start_job",day='1-31', hour=22, minute=0)
+    # scheduler.add_job(start_job,'interval',seconds=5)
+    scheduler.start()
 

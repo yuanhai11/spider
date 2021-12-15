@@ -14,7 +14,7 @@ if not os.path.exists(path):
 for name,i in zip(company_name,data):
     headers = {
         "AppId":"zl-saas",
-        "Authorization":"892_8c02f46a72544ec4a605bef24f4e978e",
+        "Authorization":"892_ced86079fb314515b7c276e4d8e6593b",
         "extInfo":'{"declareId":%s}'%i,
         "Host":"api.360jizhang.com",
         "httpMethod":"get",

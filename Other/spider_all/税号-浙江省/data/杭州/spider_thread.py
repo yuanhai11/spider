@@ -39,9 +39,14 @@ headers = {
 import re,datetime
 proxys = []
 def dl():
+    global resp
     time.sleep(2)
     dlurl = 'http://dps.kdlapi.com/api/getdps/?orderid=922450652890692&num=1&pt=1&sep=1'
-    resp = requests.get(dlurl).text
+    try:
+        resp = requests.get(dlurl).text
+    except Exception:
+        logger.warn("访问快代理出现问题，原因1：断网，原因2：快代理本身问题，休眠60s ")
+        time.sleep(60)
     if '今日' not in resp:
         resp = re.sub(r'\n', '', resp)
         proxy = {
@@ -148,13 +153,17 @@ def main(proxiess,thread_name):
             gid = c.get('gid')
             name = c.get('name')
             taxnum = c.get('taxnum')
-            address = c.get('address').strip()
+            try:
+                address = c.get('address').strip()
+            except:
+                address = ''
             phone = c.get('phone')
             bank = c.get('bank')
             bankAccount = c.get('bankAccount')
             times = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-        except Exception:
+        except Exception as e:
             logger.info("解析response时出现异常：{}".format(response))
+            print(e)
             continue
         try:
             medi = Medicine(company_name=name,company_num=gid,tax_num=taxnum,reg_addr=address,phone=phone,bank=bank,bank_card=bankAccount,gmt_created=times,gmt_updated=times)
@@ -174,15 +183,16 @@ if __name__ == '__main__':
     company_queue = Queue(maxsize=1000000)
     # Tunnel connection failed: 407 White IP Failed
     import json
-    with open(r'D:\projects\S_Git_proj\spider\Other\spider_all\税号-浙江省\data.txt', encoding='utf-8')as fp:
+    with open(r'D:\projects\S_Git_proj\spider\Other\spider_all\税号-浙江省\data-second.txt', encoding='utf-8')as fp:
         content = json.loads(fp.read())
+        print(len(content))
     index = 0
     for index, d in enumerate(content):
-        if d[0] == '3273721985': #  下波数据 75678768
+        if d[0] == '3127047517': #  下波数据 2355982668
             logger.info("当前数据的索引位置:{} ".format(index))
             break
 
-    data = content[index + 1:index + 200000]
+    data = content[index + 1:index + 400000]
     print(data)
     # exit()
     bloom = get_bloom()
@@ -210,10 +220,3 @@ if __name__ == '__main__':
     thread2.join()
     thread3.join()
     thread4.join()
-
-
-
-
-
-
-

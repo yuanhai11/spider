@@ -256,18 +256,27 @@ def check_data():
 def icp_lists():
     head = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
+        'cookie':'toolbox_words=www.meshplus.cn; cz_statistics_visitor=230cb358-83e2-a7fc-e7e9-6293fc07ca4a; toolbox_urls=cjpa.top|www.github.com|www.easywork.cc; UM_distinctid=17d0342bc42beb-07b7c8107a287d-57b193e-1fa400-17d0342bc43cf4; Hm_lvt_ca96c3507ee04e182fb6d097cb2a1a4c=1637913968,1638002217,1638147469,1638252492; qHistory=aHR0cDovL3Rvb2wuY2hpbmF6LmNvbS9pcHdob2lzL19JUCBXSE9JU+afpeivonxodHRwOi8vd2hvaXMuY2hpbmF6LmNvbS9zdWZmaXhf5pyA5paw5rOo5YaM5Z+f5ZCN5p+l6K+ifGh0dHA6Ly90b29sLmNoaW5hei5jb21f56uZ6ZW/5bel5YW3fGh0dHA6Ly93aG9pcy5jaGluYXouY29tL19XaG9pc+afpeivonxodHRwOi8vaXAudG9vbC5jaGluYXouY29tL3NpdGVpcC9fSVDmiYDlnKjlnLDmibnph4/mn6Xor6J8aHR0cDovL2lwLnRvb2wuY2hpbmF6LmNvbS9pcGJhdGNoL19JUOaJuemHj+afpeivonxodHRwOi8vaXAudG9vbC5jaGluYXouY29tX0lQL0lQdjbmn6Xor6LvvIzmnI3liqHlmajlnLDlnYDmn6Xor6I=; bbsmax_user=f6df12f1-e09a-a25d-63a7-ab2053091f8d; .AspNetCore.Antiforgery.2htDGZ9yTBg=CfDJ8AWLYhGeXVlJiV3by1LjtiI_IC8k_ToxRLUK6NBjvjytXQvwl2G7W3aZB344czrtcHGM5RZfdh-5Yf4ve809EInD77X2z-2AXqINiWr0anAnHnekCCgCDxcajLtuUY9j3Mw0oG5QLODB0zFx0LQ2UOw; .AspNetCore.Session=CfDJ8AWLYhGeXVlJiV3by1LjtiK5oRPr4RGsjrPVxS855Nd1cSfc4UuW2YvCTV0vpwAKI89%2B3DCWVswOqVNJbzBsBJN5ASqz%2Fh3u1KbukQsanKyvIr7H1sq%2Fs%2FB4RlwPJyMvRsKIbCEIW1PYPDfMSyRWNVNIw1GCq9d%2BLUIonT3hB1e0; Hm_lpvt_ca96c3507ee04e182fb6d097cb2a1a4c=1639530550; CNZZDATA5082706=cnzz_eid%3D503046556-1635288334-http%253A%252F%252Ftool.chinaz.com%252F%26ntime%3D1639527414'
     }
     # 循环100次，因为最大限制100
-    for page in range(1,101):
+    for page in range(34,101):
         data = {
             'pageNo': page,
             'pageSize': 20,
             # day 代表当天
-            'day':7
+            'day':1
         }
-        time.sleep(5)
-        tex = requests.post(url="http://icp.chinaz.com/Provinces/PageData",data=data,headers=head).json().get("data")
-        print(tex)
+        time.sleep(10)
+        while 1:
+            try:
+                tex = requests.post(url="http://icp.chinaz.com/Provinces/PageData",data=data,headers=head,proxies=proxys[-1]).json().get("data")
+                print(tex)
+                break
+            except Exception:
+                time.sleep(5)
+                dl()
+                continue
+
         if len(tex)==0:
             time.sleep(10)
             continue
@@ -333,7 +342,7 @@ def get_js(domain):
 
 if __name__ == '__main__':
     local_time = time.strftime("%Y-%m-%d", time.localtime())
-    local_time = '2021-11-12'
+    local_time = '2021-12-14'
     icp_lists()
 
     # dns_provider()

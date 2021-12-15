@@ -26,12 +26,14 @@ def get_data():
 
     conn = pymysql.connect(host="192.168.2.97", user="root", password='BOOT-xwork1024', database="spider", port=3306)
     cursor = conn.cursor()
-    sql = "SELECT company_num,company_name FROM `company_info` WHERE (`reg_authority` LIKE '杭州%' OR `reg_authority` LIKE '富阳%' OR `reg_authority`LIKE '临安%' OR `reg_authority` LIKE '桐庐%' OR `reg_authority` LIKE '淳安%');"
+    sql = '''SELECT company_num,company_name FROM `company_info` WHERE (`reg_authority` LIKE '建德%' OR `reg_authority` LIKE '绍兴%' OR `reg_authority` LIKE '新昌%' OR `reg_authority`LIKE '诸暨%' OR `reg_authority` LIKE '嵊州%'
+        OR `reg_authority` LIKE '金华%' OR `reg_authority` LIKE '武义%' OR `reg_authority` LIKE '浦江%' OR `reg_authority` LIKE '兰溪%' OR `reg_authority` LIKE '义乌%' OR `reg_authority` LIKE '东阳%' OR `reg_authority` LIKE '永康%'
+        OR `reg_authority` LIKE '宁波%' OR `reg_authority` LIKE '象山%' OR `reg_authority` LIKE '宁海%' OR `reg_authority` LIKE '余姚%' OR `reg_authority` LIKE '慈溪%')'''
     cursor.execute(sql)
     db_data = cursor.fetchall()
 
     db_data = [i for i in db_data if i[0] not in bloom]
-    with open("data.txt", 'w' , encoding='utf-8')as fp:
+    with open('data-second.txt','w',encoding='utf-8')as fp:
         fp.write(json.dumps(db_data,ensure_ascii=False))
 
     cursor.close()
@@ -46,5 +48,5 @@ def load_data():
 
 if __name__ == '__main__':
     # main()
-    # get_data()
-    load_data()
+    get_data()
+    # load_data()
