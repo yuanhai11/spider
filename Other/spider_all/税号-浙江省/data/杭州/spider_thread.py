@@ -174,17 +174,16 @@ if __name__ == '__main__':
     company_queue = Queue(maxsize=1000000)
     # Tunnel connection failed: 407 White IP Failed
     import json
-    with open(r'D:\projects\S_Git_proj\spider\Other\spider_all\税号-浙江省\data.txt', encoding='utf-8')as fp:
+    with open(r'D:\projects\S_Git_proj\spider\Other\spider_all\税号-浙江省\data-second.txt', encoding='utf-8')as fp:
         content = json.loads(fp.read())
     index = 0
     for index, d in enumerate(content):
-        if d[0] == '3273721985': #  下波数据 75678768
+        if d[0] == '3278408489': #  下波数据 832339646
             logger.info("当前数据的索引位置:{} ".format(index))
             break
 
-    data = content[index + 1:index + 200000]
+    data = content[index + 1:index + 400000]
     print(data)
-    # exit()
     bloom = get_bloom()
     db_data = [i for i in data if i[0] not in bloom]
     le = len(db_data)

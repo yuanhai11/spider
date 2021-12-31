@@ -165,14 +165,14 @@ def get_bloom():
     return bloom
 
 if __name__ == '__main__':
-    with open(r'D:\projects\S_Git_proj\spider\Other\spider_all\税号-浙江省\data.txt', encoding='utf-8')as fp:
+    with open(r'D:\projects\S_Git_proj\spider\Other\spider_all\税号-浙江省\data-second.txt', encoding='utf-8')as fp:
         content = json.loads(fp.read())
     index = 0
     for index, d in enumerate(content):
-        if d[0] == '2345168332': # 75678768
+        if d[0] == '3019258035': # 832339646
             print("当前数据的索引位置:{} ".format(index))
             break
-    data = content[index + 1:index + 100000]
+    data = content[index + 1:index + 400000]
     print(data)
     bloom = get_bloom()
     db_data = [i for i in data if i[0] not in bloom]
