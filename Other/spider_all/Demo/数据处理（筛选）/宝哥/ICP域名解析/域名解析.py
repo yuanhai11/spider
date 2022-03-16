@@ -364,6 +364,6 @@ if __name__ == '__main__':
 
     from apscheduler.schedulers.blocking import BlockingScheduler
     scheduler = BlockingScheduler()
-    scheduler.add_job(main, 'cron', day ='1-31', hour=22, minute=0)
+    scheduler.add_job(main, 'cron', day ='1-31', hour=23, minute=10)
     scheduler.start()
 

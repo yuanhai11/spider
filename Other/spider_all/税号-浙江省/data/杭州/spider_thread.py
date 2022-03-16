@@ -148,7 +148,7 @@ def main(proxiess,thread_name):
             gid = c.get('gid')
             name = c.get('name')
             taxnum = c.get('taxnum')
-            address = c.get('address').strip()
+            address = c.get('address')
             phone = c.get('phone')
             bank = c.get('bank')
             bankAccount = c.get('bankAccount')
@@ -178,7 +178,7 @@ if __name__ == '__main__':
         content = json.loads(fp.read())
     index = 0
     for index, d in enumerate(content):
-        if d[0] == '3278408489': #  下波数据 832339646
+        if d[0] == '3106487206': #  下波数据 3034390094
             logger.info("当前数据的索引位置:{} ".format(index))
             break
 
@@ -209,10 +209,3 @@ if __name__ == '__main__':
     thread2.join()
     thread3.join()
     thread4.join()
-
-
-
-
-
-
-
