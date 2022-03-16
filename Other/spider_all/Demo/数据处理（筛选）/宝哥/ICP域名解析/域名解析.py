@@ -348,24 +348,22 @@ class Operation():
         win32api.keybd_event(win32con.VK_F5, MAP_KEYS(116, 0), 0, 0)  # 按下 F5
         win32api.keybd_event(win32con.VK_F5, MAP_KEYS(116, 0), win32con.WM_KEYUP, 0)
 
+def main():
+    local_time = time.strftime("%Y-%m-%d", time.localtime())
+    # local_time = '2021-11-12'
+    operation = Operation(local_time)
+    operation.call_uibot()
+    while 1:
+        if not os.path.exists(r"C:\Users\20945\Desktop\locked.txt"):
+            operation.icp_lists()
+            operation.check_data()
+            operation.web()
+            # operation.tyc_data_match()
 
 if __name__ == '__main__':
-    while 1:
-        local_time = time.strftime("%Y-%m-%d", time.localtime())
-        # local_time = '2021-11-12'
-        operation = Operation(local_time)
-        operation.call_uibot()
-        while 1:
-            if not os.path.exists(r"C:\Users\20945\Desktop\locked.txt"):
-                operation.icp_lists()
-                operation.check_data()
-                operation.web()
-                # operation.tyc_data_match()
 
-                t = datetime.datetime.replace(datetime.datetime.now() + datetime.timedelta(days=1), hour=22, minute=0,
-                                              second=0)
-                print("休眠中，！！！明天 22:00 点运行》")
-                time.sleep((t - datetime.datetime.now()).total_seconds())
-                break
-            time.sleep(60)
+    from apscheduler.schedulers.blocking import BlockingScheduler
+    scheduler = BlockingScheduler()
+    scheduler.add_job(main, 'cron', day ='1-31', hour=23, minute=10)
+    scheduler.start()
 
