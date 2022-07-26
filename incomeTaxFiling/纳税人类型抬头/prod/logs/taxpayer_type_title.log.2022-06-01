@@ -1,0 +1,12 @@
+2022-06-01 08:42:28,659 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-06-01 08:42:28,805 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-06-01 08:42:29,038 [DESKTOP-O9339PH] [range] [MainThread] WARNING [assign] - No partition metadata for topic taxpayer_type_title
+2022-06-01 08:42:29,473 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"88I6GB","companyId":"449977","companyName":"杭州杭佰汇装饰有限公司","handleTaxName":"冯卓群","localDate":"2022-05-31","taxAccount":"91330114MA2KLJUD2W","handleTaxPwd":"Aa123456","tenant_code":"ZH-383-20191217145410"}
+2022-06-01 08:42:34,368 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [get_headers] - {"code":0,"message":"success","data":{"name":"value","value":"0"}}
+2022-06-01 08:42:35,527 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"zlcw1401","companyId":"428938","companyName":"杭州锦虹建材有限公司","handleTaxName":"李玲玲","localDate":"2022-05-31","taxAccount":"91330110MA7EPEW19E","handleTaxPwd":"angel1001","tenant_code":"ZH-383-20191217145410"}
+2022-06-01 08:42:40,949 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [get_headers] - {"code":0,"message":"success","data":{"name":"value","value":"0"}}
+2022-06-01 08:42:42,596 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"zlcw1401","companyId":"454503","companyName":"杭州威振网络科技有限公司","handleTaxName":"李玲玲","localDate":"2022-05-31","taxAccount":"91330110MA7KD7J17C","handleTaxPwd":"angel1001","tenant_code":"ZH-383-20191217145410"}
+2022-06-01 08:42:47,441 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [get_headers] - {"code":0,"message":"success","data":{"name":"value","value":"0"}}
+2022-06-01 08:42:48,670 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"0D2V0S","companyId":"457214","companyName":"浙江为来到家科技有限公司","handleTaxName":"姜燕","localDate":"2022-05-31","taxAccount":"91330110MA2KLHD37H","handleTaxPwd":"zlcw1401","tenant_code":"ZH-383-20191217145410"}
+2022-06-01 08:46:21,135 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-06-01 08:46:21,252 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!

@@ -1,0 +1,51 @@
+2022-05-31 14:40:21,313 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [invoice_info]
+2022-05-31 14:40:21,483 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - rpa worker started!
+2022-05-31 14:40:21,725 [DESKTOP-O9339PH] [range] [MainThread] WARNING [assign] - No partition metadata for topic invoice_info
+2022-05-31 14:40:26,501 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - receive message: {"taxPwd":"zlcw1401","companyId":"2344","companyName":"\u676d\u5dde\u6c38\u4ea6\u5f3a\u8d77\u91cd\u8bbe\u5907\u6709\u9650\u516c\u53f8","handleTaxName":"\u674e\u8000","localDate":"2022-05-30","taxAccount":"91330105MA2GNX4C4M","handleTaxPwd":"zlcw1401","tenant_code":"ZH-383-20191217145410"}
+2022-05-31 14:40:26,572 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - 杭州永亦强起重设备有限公司该公司已经执行过了！
+2022-05-31 14:40:56,704 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - receive message: {"taxPwd":"zlcw1401","companyId":"2344","companyName":"\u676d\u5dde\u6c38\u4ea6\u5f3a\u8d77\u91cd\u8bbe\u5907\u6709\u9650\u516c\u53f8","handleTaxName":"\u674e\u8000","localDate":"2022-05-30","taxAccount":"91330105MA2GNX4C4M","handleTaxPwd":"zlcw1401","tenant_code":"ZH-383-20191217145410"}
+2022-05-31 14:40:56,755 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - 杭州永亦强起重设备有限公司该公司已经执行过了！
+2022-05-31 14:41:41,954 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - receive message: {"taxPwd":"zlcw1401","companyId":"2344","companyName":"\u676d\u5dde\u6c38\u4ea6\u5f3a\u8d77\u91cd\u8bbe\u5907\u6709\u9650\u516c\u53f8","handleTaxName":"\u674e\u8000","localDate":"2022-05-30","taxAccount":"91330105MA2GNX4C4M","handleTaxPwd":"zlcw1401","tenant_code":"ZH-383-20191217145410"}
+2022-05-31 14:41:42,007 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - 杭州永亦强起重设备有限公司该公司已经执行过了！
+2022-05-31 14:41:52,073 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - receive message: {"taxPwd":"zlcw1401","companyId":"2344","companyName":"\u676d\u5dde\u6c38\u4ea6\u5f3a\u8d77\u91cd\u8bbe\u5907\u6709\u9650\u516c\u53f8","handleTaxName":"\u674e\u8000","localDate":"2022-05-30","taxAccount":"91330105MA2GNX4C4M","handleTaxPwd":"zlcw1401","tenant_code":"ZH-383-20191217145410"}
+2022-05-31 14:41:52,124 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - 杭州永亦强起重设备有限公司该公司已经执行过了！
+2022-05-31 14:42:32,289 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - receive message: {"taxPwd":"zlcw1401","companyId":"2344","companyName":"\u676d\u5dde\u6c38\u4ea6\u5f3a\u8d77\u91cd\u8bbe\u5907\u6709\u9650\u516c\u53f8","handleTaxName":"\u674e\u8000","localDate":"2022-05-30","taxAccount":"91330105MA2GNX4C4M","handleTaxPwd":"zlcw1401","tenant_code":"ZH-383-20191217145410"}
+2022-05-31 14:42:32,345 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - 杭州永亦强起重设备有限公司该公司已经执行过了！
+2022-05-31 14:42:38,087 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [invoice_info]
+2022-05-31 14:42:38,232 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - rpa worker started!
+2022-05-31 14:42:47,290 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - receive message: {"taxPwd":"zlcw1401","companyId":"2344","companyName":"\u676d\u5dde\u6c38\u4ea6\u5f3a\u8d77\u91cd\u8bbe\u5907\u6709\u9650\u516c\u53f8","handleTaxName":"\u674e\u8000","localDate":"2022-05-30","taxAccount":"91330105MA2GNX4C4M","handleTaxPwd":"zlcw1401","tenant_code":"ZH-383-20191217145410"}
+2022-05-31 14:43:05,776 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [get_data_by_proxy] - get_data error
+2022-05-31 14:43:06,913 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [dl] - [{'https': '60.169.115.213:32845'}]
+2022-05-31 14:43:23,227 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '60.169.115.213:32845'}],浙江省通用电子发票,SPF,[]
+2022-05-31 14:43:39,870 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [get_data_by_proxy] - get_data error
+2022-05-31 14:43:40,939 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [dl] - [{'https': '60.167.82.14:29791'}]
+2022-05-31 14:44:34,968 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [invoice_info]
+2022-05-31 14:44:35,109 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - rpa worker started!
+2022-05-31 14:44:41,232 [DESKTOP-O9339PH] [invoice_over] [MainThread]  INFO [main] - receive message: {"taxPwd":"zlcw1401","companyId":"2344","companyName":"\u676d\u5dde\u6c38\u4ea6\u5f3a\u8d77\u91cd\u8bbe\u5907\u6709\u9650\u516c\u53f8","handleTaxName":"\u674e\u8000","localDate":"2022-05-30","taxAccount":"91330105MA2GNX4C4M","handleTaxPwd":"zlcw1401","tenant_code":"ZH-383-20191217145410"}
+2022-05-31 14:44:53,017 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [get_data_by_proxy] - get_data error
+2022-05-31 14:44:54,085 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [dl] - [{'https': '119.41.206.213:26289'}]
+2022-05-31 14:44:54,954 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],浙江省通用电子发票,SPF,[]
+2022-05-31 14:44:56,251 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],浙江省通用电子发票,KPF,[]
+2022-05-31 14:44:57,965 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],增值税电子普通发票,SPF,[]
+2022-05-31 14:44:59,674 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],增值税电子普通发票,KPF,[]
+2022-05-31 14:45:01,309 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],增值税普通发票,SPF,[]
+2022-05-31 14:45:02,751 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],增值税普通发票,KPF,[]
+2022-05-31 14:45:04,425 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],增值税专用发票,SPF,[]
+2022-05-31 14:45:06,070 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],增值税专用发票,KPF,[{'HJ': '9000', 'WLFPH': '', 'HWMC': '*金属制品*钢丝绳', 'KPRQ': '2022-05-30 14:48:31.0', 'KPR': '', 'FPHM': '06111984', 'SE': '1035.4', 'FPDM': '3300222130', 'MC': '杭州天和建设集团有限公司', 'SBH': '91330105728449222L', 'BZ': '正常', 'SL': '0.13', 'FPZL': '', 'JYM': '52789821643093302362'}, {'HJ': '3870', 'WLFPH': '', 'HWMC': '*金属制品*钢丝绳', 'KPRQ': '2022-05-30 14:49:57.0', 'KPR': '', 'FPHM': '06111985', 'SE': '445.22', 'FPDM': '3300222130', 'MC': '杭州天和建设集团有限公司', 'SBH': '91330105728449222L', 'BZ': '正常', 'SL': '0.13', 'FPZL': '', 'JYM': '65495877722358365339'}, {'HJ': '18308', 'WLFPH': '', 'HWMC': '*金属制品*钢丝绳', 'KPRQ': '2022-05-30 14:51:28.0', 'KPR': '', 'FPHM': '06111986', 'SE': '2106.23', 'FPDM': '3300222130', 'MC': '杭州吉力起重配件有限公司', 'SBH': '91330110MA28MBW95N', 'BZ': '正常', 'SL': '0.13', 'FPZL': '', 'JYM': '43402564964187383481'}]
+2022-05-31 14:45:06,144 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - {"name":"value","value":"0"}
+2022-05-31 14:45:07,475 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],增值税电子专票,SPF,[]
+2022-05-31 14:45:08,789 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],增值税电子专票,KPF,[]
+2022-05-31 14:45:10,126 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],通用机打发票,SPF,[]
+2022-05-31 14:45:11,392 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],通用机打发票,KPF,[]
+2022-05-31 14:45:12,735 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],机动车销售发票,SPF,[]
+2022-05-31 14:45:14,095 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],机动车销售发票,KPF,[]
+2022-05-31 14:45:15,635 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],二手车发票,SPF,[]
+2022-05-31 14:45:16,859 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],二手车发票,KPF,[]
+2022-05-31 14:45:18,059 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],手工核定发票,SPF,[]
+2022-05-31 14:45:19,330 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '119.41.206.213:26289'}],手工核定发票,KPF,[]
+2022-05-31 14:45:27,862 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [get_data_by_proxy] - get_data error
+2022-05-31 14:45:28,920 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [dl] - [{'https': '114.99.9.64:30584'}]
+2022-05-31 14:45:36,934 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [get_data_by_proxy] - get_data error
+2022-05-31 14:45:37,982 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [dl] - [{'https': '59.62.99.12:33270'}]
+2022-05-31 14:45:38,856 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '59.62.99.12:33270'}],出租车发票,SPF,[]
+2022-05-31 14:45:40,018 [DESKTOP-O9339PH] [invoice_over] [ThreadPoolExecutor-0_0]  INFO [spider] - 杭州永亦强起重设备有限公司,[{'https': '59.62.99.12:33270'}],出租车发票,KPF,[]

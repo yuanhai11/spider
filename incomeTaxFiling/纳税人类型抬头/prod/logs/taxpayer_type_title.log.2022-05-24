@@ -1,0 +1,82 @@
+2022-05-23 16:38:42,955 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-05-23 16:38:43,084 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-05-23 16:38:43,328 [DESKTOP-O9339PH] [range] [MainThread] WARNING [assign] - No partition metadata for topic taxpayer_type_title
+2022-05-23 16:39:49,553 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-05-23 16:39:49,680 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-05-23 16:39:49,903 [DESKTOP-O9339PH] [range] [MainThread] WARNING [assign] - No partition metadata for topic taxpayer_type_title
+2022-05-23 19:53:30,190 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"gEG1EizvCFrib7qe7seXOA==","companyId":"336","handleTaxName":"刘晓明","localDate":"2012-12-21","taxAccount":"91330106MA28LKFY0C","handleTaxPwd":"XRBG7qrPSRnGfGr6IZGqeg==","tenant_code":"111"}
+2022-05-23 19:53:30,194 [DESKTOP-O9339PH] [spider] [MainThread] ERROR [main] - 'companyName'
+2022-05-23 20:13:26,783 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-05-23 20:13:26,904 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-05-23 20:13:35,867 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"gEG1EizvCFrib7qe7seXOA==","companyId":"336","handleTaxName":"刘晓明","localDate":"2012-12-21","taxAccount":"91330106MA28LKFY0C","handleTaxPwd":"XRBG7qrPSRnGfGr6IZGqeg==","tenant_code":"111"}
+2022-05-23 20:13:41,239 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry0次
+2022-05-23 20:13:48,367 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry1次
+2022-05-23 20:13:55,494 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry2次
+2022-05-23 20:14:02,673 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry3次
+2022-05-23 20:17:03,239 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-05-23 20:17:03,369 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-05-23 20:17:47,161 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"gEG1EizvCFrib7qe7seXOA==","companyId":"336","handleTaxName":"刘晓明","localDate":"2012-12-21","taxAccount":"91330106MA28LKFY0C","handleTaxPwd":"XRBG7qrPSRnGfGr6IZGqeg==","tenant_code":"111"}
+2022-05-23 20:17:55,236 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry0次
+2022-05-23 20:18:02,360 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry1次
+2022-05-23 20:18:09,520 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry2次
+2022-05-23 20:18:16,612 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry3次
+2022-05-23 20:18:48,598 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-05-23 20:18:48,719 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-05-23 20:18:51,276 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"gEG1EizvCFrib7qe7seXOA==","companyId":"336","handleTaxName":"刘晓明","localDate":"2012-12-21","taxAccount":"91330106MA28LKFY0C","handleTaxPwd":"XRBG7qrPSRnGfGr6IZGqeg==","tenant_code":"111"}
+2022-05-23 20:20:17,687 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-05-23 20:20:17,805 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-05-23 20:20:18,034 [DESKTOP-O9339PH] [range] [MainThread] WARNING [assign] - No partition metadata for topic taxpayer_type_title
+2022-05-23 20:20:18,094 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"gEG1EizvCFrib7qe7seXOA==","companyId":"336","handleTaxName":"刘晓明","localDate":"2012-12-21","taxAccount":"91330106MA28LKFY0C","handleTaxPwd":"XRBG7qrPSRnGfGr6IZGqeg==","tenant_code":"111"}
+2022-05-23 20:20:23,233 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry0次
+2022-05-23 20:20:30,337 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry1次
+2022-05-23 20:20:37,441 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry2次
+2022-05-23 20:20:50,151 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry3次
+2022-05-23 20:20:53,429 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"eyzabqvK5F952qDa75ZUIQ==","companyId":"873","handleTaxName":"王子","localDate":"2012-12-21","taxAccount":"91330101MA2B24854Y","handleTaxPwd":"GdwKZLDtg+9mARFzGAiwRg==","tenant_code":"111"}
+2022-05-23 20:20:58,530 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry0次
+2022-05-23 20:21:05,631 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry1次
+2022-05-23 20:21:15,624 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry2次
+2022-05-23 20:21:22,837 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry3次
+2022-05-23 20:25:05,024 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-05-23 20:25:05,154 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-05-23 20:25:05,383 [DESKTOP-O9339PH] [range] [MainThread] WARNING [assign] - No partition metadata for topic taxpayer_type_title
+2022-05-23 20:25:05,437 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"gEG1EizvCFrib7qe7seXOA==","companyId":"336","handleTaxName":"刘晓明","localDate":"2012-12-21","taxAccount":"91330106MA28LKFY0C","handleTaxPwd":"XRBG7qrPSRnGfGr6IZGqeg==","tenant_code":"111"}
+2022-05-23 20:26:13,280 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry0次
+2022-05-23 20:32:47,879 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-05-23 20:32:48,020 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-05-23 20:32:48,255 [DESKTOP-O9339PH] [range] [MainThread] WARNING [assign] - No partition metadata for topic taxpayer_type_title
+2022-05-23 20:32:48,301 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"gEG1EizvCFrib7qe7seXOA==","companyId":"336","handleTaxName":"刘晓明","localDate":"2012-12-21","taxAccount":"91330106MA28LKFY0C","handleTaxPwd":"XRBG7qrPSRnGfGr6IZGqeg==","tenant_code":"111"}
+2022-05-23 20:32:56,384 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry0次
+2022-05-23 20:33:03,502 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry1次
+2022-05-23 20:33:10,648 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry2次
+2022-05-23 20:33:17,720 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry3次
+2022-05-23 20:33:21,633 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"eyzabqvK5F952qDa75ZUIQ==","companyId":"873","handleTaxName":"王子","localDate":"2012-12-21","taxAccount":"91330101MA2B24854Y","handleTaxPwd":"GdwKZLDtg+9mARFzGAiwRg==","tenant_code":"111"}
+2022-05-23 20:33:26,712 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry0次
+2022-05-23 20:33:33,863 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry1次
+2022-05-23 20:33:40,986 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry2次
+2022-05-23 20:33:48,207 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry3次
+2022-05-23 20:34:47,089 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"zlcw1111","companyId":"336","handleTaxName":"刘晓明","localDate":"2012-12-21","taxAccount":"91330106MA28LKFY0C","handleTaxPwd":"zlcw1401","tenant_code":"111"}
+2022-05-23 20:36:53,374 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-05-23 20:36:53,521 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-05-23 20:37:00,862 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"zlcw1111","companyId":"336","handleTaxName":"刘晓明","localDate":"2012-12-21","taxAccount":"91330106MA28LKFY0C","handleTaxPwd":"zlcw1401","tenant_code":"111"}
+2022-05-23 20:38:00,543 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [get_headers] - {"code":0,"message":"success","data":{"name":"value","value":"0"}}
+2022-05-23 20:39:44,515 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-05-23 20:39:44,648 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-05-23 20:39:52,809 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"012834","companyId":"873","handleTaxName":"王子","localDate":"2012-12-21","taxAccount":"91330101MA2B24854Y","handleTaxPwd":"zlcw1003","tenant_code":"111"}
+2022-05-23 20:40:02,805 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [get_headers] - {"code":0,"message":"success","data":{"name":"value","value":"0"}}
+2022-05-23 20:41:19,291 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-05-23 20:41:19,403 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-05-24 09:06:03,428 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"hbwh110011","companyId":"1661","handleTaxName":"黄磊","localDate":"2012-12-21","taxAccount":"91330106MA2B2UETXJ","handleTaxPwd":"h6523508","tenant_code":"111"}
+2022-05-24 09:06:11,907 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [handle_message] - None获取cookie中失败,retry0次
+2022-05-24 09:06:21,463 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [get_headers] - {"code":0,"message":"success","data":{"name":"value","value":"0"}}
+2022-05-24 09:07:24,219 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"hx123456","companyId":"33885","handleTaxName":"陆孝慧","localDate":"2012-12-21","taxAccount":"91330105MA28WBWY48","handleTaxPwd":"12345678","tenant_code":"111"}
+2022-05-24 09:07:31,130 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [get_headers] - {"code":0,"message":"success","data":{"name":"value","value":"0"}}
+2022-05-24 20:10:23,620 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-05-24 20:10:23,761 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-05-24 20:10:23,992 [DESKTOP-O9339PH] [range] [MainThread] WARNING [assign] - No partition metadata for topic taxpayer_type_title
+2022-05-24 20:10:36,228 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"7BL57X","companyId":"461422","handleTaxName":"李凌超","localDate":"2012-12-21","taxAccount":"91330114MA2KLNAK3J","handleTaxPwd":"zlcw1401","tenant_code":"111"}
+2022-05-24 20:10:40,316 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [get_headers] - {"code":0,"message":"success","data":{"name":"value","value":"0"}}
+2022-05-24 20:11:03,244 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-05-24 20:11:03,386 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-05-24 20:11:09,764 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"7BL57X","companyId":"461422","handleTaxName":"李凌超","localDate":"2012-12-21","taxAccount":"91330114MA2KLNAK3J","handleTaxPwd":"zlcw1401","tenant_code":"111"}
+2022-05-24 20:15:27,271 [DESKTOP-O9339PH] [spider] [ThreadPoolExecutor-0_0]  INFO [get_headers] - {"code":0,"message":"success","data":{"name":"value","value":"0"}}
+2022-05-24 20:16:03,698 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"7BL57X","companyId":"461422","handleTaxName":"李凌超","localDate":"2012-12-21","taxAccount":"91330114MA2KLNAK3J","handleTaxPwd":"zlcw1401","tenant_code":"111"}

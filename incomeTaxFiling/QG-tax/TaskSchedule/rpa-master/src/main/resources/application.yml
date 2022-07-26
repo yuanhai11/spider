@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  application:
+    name: rpa-master
+
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    com.jizhang.rpamaster.dao: debug
