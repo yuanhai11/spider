@@ -1,0 +1,13 @@
+server:
+  port: 48050
+spring:
+  application:
+    name: etl
+  datasource:
+    url: 'jdbc:mysql://192.168.2.99:3306/prod_spider'
+    username: 'root'
+    password: 'BOOT-xwork1024'
+
+logging:
+  file:
+    path: log

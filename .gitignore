@@ -6,3 +6,5 @@
 *.json
 *.docx
 *.xml
+*.log
+*.log.*

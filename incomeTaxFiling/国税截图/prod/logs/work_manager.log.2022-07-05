@@ -1,0 +1,13 @@
+2022-07-05 09:30:48,005 [DESKTOP-O9339PH] [screen_country] [MainThread]  INFO [handle_message] - 杭州锦慧企业管理咨询有限公司截图未知错误，请重试！sequence item 0: expected str instance, lxml.etree._Element found
+2022-07-05 09:30:48,010 [DESKTOP-O9339PH] [screen_country] [MainThread]  INFO [handle_message] - screenTask is over!taskId:16865,companyName:杭州锦慧企业管理咨询有限公司,save_image:{}
+2022-07-05 09:30:49,651 [DESKTOP-O9339PH] [screen_country] [MainThread]  INFO [handle_message] - taskCallback is success,taskID:16865,result:{"code":1,"message":"","data":{"url":"http://114.55.27.34:48014/api/saas/taxTask/callback","errorMsg":""}}
+2022-07-05 09:32:16,127 [DESKTOP-O9339PH] [screen_country] [MainThread]  INFO [handle_message] - 杭州锦慧企业管理咨询有限公司截图未知错误，请重试！sequence item 0: expected str instance, lxml.etree._Element found
+2022-07-05 09:32:16,128 [DESKTOP-O9339PH] [screen_country] [MainThread]  INFO [handle_message] - screenTask is over!taskId:16865,companyName:杭州锦慧企业管理咨询有限公司,save_image:{}
+2022-07-05 09:32:17,169 [DESKTOP-O9339PH] [screen_country] [MainThread]  INFO [handle_message] - taskCallback is success,taskID:16865,result:{"code":1,"message":"","data":{"url":"http://114.55.27.34:48014/api/saas/taxTask/callback","errorMsg":""}}
+2022-07-05 09:38:25,507 [DESKTOP-O9339PH] [screen_country] [MainThread]  INFO [handle_message] - 杭州锦慧企业管理咨询有限公司截图未知错误，请重试！sequence item 0: expected str instance, lxml.etree._Element found
+2022-07-05 09:38:25,508 [DESKTOP-O9339PH] [screen_country] [MainThread]  INFO [handle_message] - screenTask is over!taskId:16865,companyName:杭州锦慧企业管理咨询有限公司,save_image:{}
+2022-07-05 09:39:51,345 [DESKTOP-O9339PH] [screen_country] [MainThread]  INFO [handle_message] - taskCallback is success,taskID:16865,result:{"code":1,"message":"","data":{"url":"http://114.55.27.34:48014/api/saas/taxTask/callback","errorMsg":""}}
+2022-07-05 09:40:33,175 [DESKTOP-O9339PH] [screen_country] [MainThread]  INFO [handle_message] - 杭州锦慧企业管理咨询有限公司截图未知错误，请重试！sequence item 0: expected str instance, lxml.etree._Element found
+2022-07-05 09:40:33,176 [DESKTOP-O9339PH] [screen_country] [MainThread]  INFO [handle_message] - screenTask is over!taskId:16865,companyName:杭州锦慧企业管理咨询有限公司,save_image:{}
+2022-07-05 09:40:34,166 [DESKTOP-O9339PH] [screen_country] [MainThread]  INFO [handle_message] - taskCallback is success,taskID:16865,result:{"code":1,"message":"","data":{"url":"http://114.55.27.34:48014/api/saas/taxTask/callback","errorMsg":""}}
+2022-07-05 09:50:00,143 [DESKTOP-O9339PH] [screen_country] [MainThread]  INFO [handle_message] - screenTask is over!taskId:16865,companyName:杭州锦慧企业管理咨询有限公司,save_image:{'常规申报列表': {'常规申报列表': 'http://oss-xwork.oss-cn-hangzhou.aliyuncs.com/b826c91b-ab8c-4971-89f8-40ad8223d085.jpg'}, '社保': [], '印花税': [], '财务报表': [], '增值税': [], '企业所得税': []}

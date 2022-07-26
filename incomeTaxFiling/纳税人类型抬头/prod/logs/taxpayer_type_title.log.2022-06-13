@@ -1,0 +1,12 @@
+2022-06-13 09:38:18,089 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-06-13 09:38:18,212 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-06-13 09:40:27,015 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-06-13 09:40:27,144 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-06-13 09:40:27,375 [DESKTOP-O9339PH] [range] [MainThread] WARNING [assign] - No partition metadata for topic taxpayer_type_title
+2022-06-13 09:42:03,613 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-06-13 09:42:03,753 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-06-13 09:42:03,984 [DESKTOP-O9339PH] [range] [MainThread] WARNING [assign] - No partition metadata for topic taxpayer_type_title
+2022-06-13 09:46:05,501 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - kafka server is ['121.196.16.204:9091', '121.196.16.204:9092', '121.196.16.204:9093'],topic is [taxpayer_type_title]
+2022-06-13 09:46:05,649 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - rpa worker started!
+2022-06-13 09:46:13,586 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [main] - receive message: {"taxPwd":"zlcw1401","companyId":"15589","handleTaxName":"周学锐","localDate":"2012-12-21","taxAccount":"91330106MA2J2YBX1M","handleTaxPwd":"123456","tenant_code":"111"}
+2022-06-13 09:46:19,690 [DESKTOP-O9339PH] [spider] [MainThread]  INFO [get_headers] - {"code":0,"message":"success","data":{"name":"value","value":"0"}}

@@ -1,0 +1,27 @@
+2022-04-30 10:05:37,793 [DESKTOP-O9339PH] [base] [group_1-heartbeat] WARNING [_run_once] - Heartbeat session expired, marking coordinator dead
+2022-04-30 10:05:37,797 [DESKTOP-O9339PH] [base] [group_1-heartbeat] WARNING [coordinator_dead] - Marking the coordinator dead (node coordinator-1) for group group_1: Heartbeat session expired.
+2022-04-30 10:05:42,443 [DESKTOP-O9339PH] [conn] [MainThread] ERROR [_recv] - <BrokerConnection node_id=3 host=121.196.16.204:9093 <connected> [IPv4 ('121.196.16.204', 9093)]>: Error receiving network data closing socket
+Traceback (most recent call last):
+  File "C:\Users\20945\AppData\Local\Programs\Python\Python38\lib\site-packages\kafka\conn.py", line 1090, in _recv
+    data = self._sock.recv(self.config['sock_chunk_bytes'])
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2022-04-30 10:05:42,491 [DESKTOP-O9339PH] [client_async] [MainThread] WARNING [_conn_state_change] - Node 3 connection failed -- refreshing metadata
+2022-04-30 10:05:42,491 [DESKTOP-O9339PH] [base] [MainThread] ERROR [_failed_request] - Error sending GroupCoordinatorRequest_v0 to node 3 [KafkaConnectionError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。]
+2022-04-30 10:05:49,694 [DESKTOP-O9339PH] [conn] [MainThread] ERROR [_recv] - <BrokerConnection node_id=2 host=121.196.16.204:9092 <connected> [IPv4 ('121.196.16.204', 9092)]>: Error receiving network data closing socket
+Traceback (most recent call last):
+  File "C:\Users\20945\AppData\Local\Programs\Python\Python38\lib\site-packages\kafka\conn.py", line 1090, in _recv
+    data = self._sock.recv(self.config['sock_chunk_bytes'])
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2022-04-30 10:05:49,694 [DESKTOP-O9339PH] [client_async] [MainThread] WARNING [_conn_state_change] - Node 2 connection failed -- refreshing metadata
+2022-04-30 10:05:49,694 [DESKTOP-O9339PH] [future] [MainThread] ERROR [_call_backs] - Fetch to node 2 failed: KafkaConnectionError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2022-04-30 10:05:49,694 [DESKTOP-O9339PH] [conn] [MainThread] ERROR [_recv] - <BrokerConnection node_id=coordinator-1 host=121.196.16.204:9091 <connected> [IPv4 ('121.196.16.204', 9091)]>: Error receiving network data closing socket
+Traceback (most recent call last):
+  File "C:\Users\20945\AppData\Local\Programs\Python\Python38\lib\site-packages\kafka\conn.py", line 1090, in _recv
+    data = self._sock.recv(self.config['sock_chunk_bytes'])
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2022-04-30 10:05:49,695 [DESKTOP-O9339PH] [client_async] [MainThread] WARNING [_conn_state_change] - Node coordinator-1 connection failed -- refreshing metadata
+2022-04-30 10:05:49,695 [DESKTOP-O9339PH] [base] [MainThread] ERROR [_failed_request] - Error sending HeartbeatRequest_v1 to node coordinator-1 [KafkaConnectionError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。]
+2022-04-30 10:05:49,695 [DESKTOP-O9339PH] [base] [MainThread] ERROR [_failed_request] - Error sending HeartbeatRequest_v1 to node coordinator-1 [KafkaConnectionError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。]
+2022-04-30 10:05:49,695 [DESKTOP-O9339PH] [base] [MainThread] ERROR [_failed_request] - Error sending HeartbeatRequest_v1 to node coordinator-1 [KafkaConnectionError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。]
+2022-04-30 10:05:49,698 [DESKTOP-O9339PH] [base] [MainThread] WARNING [coordinator_dead] - Marking the coordinator dead (node coordinator-1) for group group_1: Node Disconnected.
+2022-04-30 10:05:52,750 [DESKTOP-O9339PH] [base] [MainThread] WARNING [_handle_heartbeat_response] - Heartbeat: local member_id was not recognized; this consumer needs to re-join
