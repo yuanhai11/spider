@@ -12,9 +12,9 @@ import requests
 import datetime
 # 加入pywintypes，打包成功
 import pywintypes
-import win32api
-import win32con
-import win32gui
+# import win32api
+# import win32con
+# import win32gui
 
 
 class Operation():
@@ -296,8 +296,9 @@ class Operation():
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)
         # 以设定好的方式打开谷歌浏览器
-        driver = webdriver.Chrome(executable_path=r'E:\chrome_downloading\chromedriver_win32 (1)\chromedriver.exe',
-                                  options=options)
+        driver = webdriver.Chrome(
+            executable_path=r'C:\Users\20945\Downloads\Compressed\chromedriver_win32_2\chromedriver.exe',
+            options=options)
         driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
             "source": """
                Object.defineProperty(navigator, 'webdriver', {
@@ -350,20 +351,21 @@ class Operation():
 
 def main():
     local_time = time.strftime("%Y-%m-%d", time.localtime())
-    # local_time = '2021-11-12'
+    local_time = '2022-08-18'
     operation = Operation(local_time)
-    operation.call_uibot()
-    while 1:
-        if not os.path.exists(r"C:\Users\20945\Desktop\locked.txt"):
-            operation.icp_lists()
-            operation.check_data()
-            operation.web()
+    # operation.call_uibot()
+    # while 1:
+    #     if not os.path.exists(r"C:\Users\20945\Desktop\locked.txt"):
+    #         operation.icp_lists()
+    # operation.check_data()
+    operation.web()
             # operation.tyc_data_match()
 
 if __name__ == '__main__':
 
-    from apscheduler.schedulers.blocking import BlockingScheduler
-    scheduler = BlockingScheduler()
-    scheduler.add_job(main, 'cron', day ='1-31', hour=23, minute=10)
-    scheduler.start()
+    # from apscheduler.schedulers.blocking import BlockingScheduler
+    # scheduler = BlockingScheduler()
+    # scheduler.add_job(main, 'cron', day ='1-31', hour=23, minute=10)
+    # scheduler.start()
+    main()
 
