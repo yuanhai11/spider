@@ -6,11 +6,6 @@ from sqlalchemy.ext.declarative import declarative_base
 import requests
 import execjs
 
-# 加入pywintypes，打包成功
-import pywintypes
-import win32api
-import win32con
-import win32gui
 # 创建对象的基类:
 Base = declarative_base()
 
@@ -256,6 +251,8 @@ def check_data():
 def icp_lists():
     head = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
+        'cookie':'qHistory=aHR0cDovL2lwLnRvb2wuY2hpbmF6LmNvbV9JUC9JUHY25p+l6K+i77yM5pyN5Yqh5Zmo5Zyw5Z2A5p+l6K+i; cz_statistics_visitor=b843c099-69ba-6c07-2bcb-7d8c63e0471a; Hm_lvt_ca96c3507ee04e182fb6d097cb2a1a4c=1660814544; .AspNetCore.Antiforgery.ZLR_yHWNBdY=CfDJ8CdB96UITKRDua5BVQevwLd9T1wXvbqyGUOhmnIsbErTj6fYPLJcxXr_xEPA4rg3cg8fRAm1w1WBQIqz2YD1pFbOhxI00sI01i_kXQZIzxmARVp8qsIjjuoLwBoFwGbRZBGdZodVuh5-sSKacX0Jw8M; .AspNetCore.Antiforgery.2htDGZ9yTBg=CfDJ8OoHP14mz-dHp2dqJHqKMe3M40CIeoB1m7rq1qFQNYx7aGM6dwJ1hbW3A5N4JsEYsXE8_26jc3XVduqYCuW7iYQRky7JzF8NJSupWGDJLsXpqysoIPdI3ToIhOp_S_a_1AcPzBKHeuJT1FHOouilmJ4; ucvalidate=da8a0cc3-ea73-ea1b-fa68-0e88961742f4; bbsmax_user=4b338198-3047-ff90-5d7a-68d364332147; Hm_lpvt_ca96c3507ee04e182fb6d097cb2a1a4c=1660822854; .AspNetCore.Session=CfDJ8H1kdc4oNblDm54kfKYIvKfrWtGHr%2BWPXoisfjL4du7vkN0J6UpCLytn8pfsOezI0rgV3eIwF97kNvh2lBNXIXGuPt6piroFRGCAYcTz2X%2Fxuqry2bc1MTJn%2FN0DacLsUQSZdZ%2FE5aanNtYshFwkf7enToRKTKcJJpOXmJphxo3G'
+
     }
     # 循环100次，因为最大限制100
     for page in range(1,101):
@@ -263,7 +260,7 @@ def icp_lists():
             'pageNo': page,
             'pageSize': 20,
             # day 代表当天
-            'day':7
+            'day':0
         }
         time.sleep(5)
         tex = requests.post(url="http://icp.chinaz.com/Provinces/PageData",data=data,headers=head).json().get("data")
@@ -333,7 +330,7 @@ def get_js(domain):
 
 if __name__ == '__main__':
     local_time = time.strftime("%Y-%m-%d", time.localtime())
-    local_time = '2021-11-12'
+    # local_time = '2022-08-18'
     icp_lists()
 
     # dns_provider()

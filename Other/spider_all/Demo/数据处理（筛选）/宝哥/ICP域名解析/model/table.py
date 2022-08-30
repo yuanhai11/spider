@@ -24,6 +24,7 @@ class table_icp_leads(Base):
     business_scope = Column(String(256))
     company_org_type = Column(String(256))
     phone_source = Column(String(256))
+    match_peer = Column(String(256))
     gmt_created = Column(String(256))
     gmt_updated = Column(String(256))
 
@@ -44,3 +45,17 @@ class table_company_info(Base):
 
 
 
+
+class table_company_contact(Base):
+    # 表的名字:
+    __tablename__ = 'company_contact'
+    id = Column(Integer(), primary_key=True, autoincrement=True)
+    match_peer = Column(String(256))
+    tel = Column(String(256))
+
+class table_data_wheel(Base):
+    # 表的名字:
+    __tablename__ = 'data_wheel'
+    id = Column(Integer(), primary_key=True, autoincrement=True)
+    company_name = Column(String(256))
+    is_peer_number = Column(String(256))
