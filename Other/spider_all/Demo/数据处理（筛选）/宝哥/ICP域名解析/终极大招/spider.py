@@ -330,10 +330,10 @@ def get_js(domain):
 
 if __name__ == '__main__':
     local_time = time.strftime("%Y-%m-%d", time.localtime())
-    local_time = '2022-08-18'
-    # icp_lists()
+    # local_time = '2022-08-18'
+    icp_lists()
 
-    dns_provider()
+    # dns_provider()
     # 2.
     # check_data()
     # 4.

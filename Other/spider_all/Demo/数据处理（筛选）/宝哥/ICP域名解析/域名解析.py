@@ -1,3 +1,4 @@
+import pymysql
 from lxml import etree
 from sqlalchemy import Column, String, create_engine, Integer, and_
 from sqlalchemy.orm import sessionmaker
@@ -5,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from ctypes import windll
-from model.table import table_icp_leads,table_company_info
+from model.table import table_icp_leads,table_company_info,table_company_contact,table_data_wheel
 
 import time, re, json,os
 import requests
@@ -229,8 +230,10 @@ class Operation():
                     i.business_scope = business_project
                     i.company_org_type = company_type
                     i.phone = sum
+                    if sum=='':
+                        i.phone = None
                     if mobiles == None:
-                        i.phone_source = ''
+                        i.phone_source = None
                     else:
                         i.phone_source = str(mobiles)
                     print(name, 'over')
@@ -238,6 +241,39 @@ class Operation():
             except Exception:
                 continue
 
+        self.session.commit()
+
+    def match_peer(self):
+        companys = self.session.query(table_icp_leads).filter(and_(
+            table_icp_leads.verify_time == self.local_time,
+            table_icp_leads.phone != None
+        )).all()
+
+        match = self.session.query(table_company_contact).filter(table_company_contact.match_peer==1).all()
+        res = ','.join([i.tel for i in match])
+        for q in companys:
+            phone = str(q.phone)
+            ph_lists = phone.split(',')
+            for p in ph_lists:
+                if p not in res:
+                    print("no")
+                    continue
+                q.match_peer = 1
+                print("dhaoif",q.company_name)
+                break
+
+        self.session.commit()
+
+        for q in companys:
+
+            match = self.session.query(table_data_wheel).filter(and_(
+                table_data_wheel.is_peer_number == 1,
+                table_data_wheel.company_name == q.company_name
+            )).all()
+            if match:
+                q.match_peer = 1
+                print("dhaoif",q.company_name)
+                # break
         self.session.commit()
 
     '''
@@ -328,37 +364,39 @@ class Operation():
     '''
     唤起uibot 并执行
     '''
+    #
+    # def call_uibot(self):
+    #
+    #     source_path = r"C:\Users\20945\Desktop\locked.txt"
+    #     if not os.path.exists(source_path):
+    #         with open(source_path, mode='w', encoding="utf-8") as f:
+    #             f.write("1")
+    #
+    #     windows_type = "Chrome_WidgetWin_1"
+    #     windows_name = "UiBot Creator"
+    #     MAP_KEYS = windll.user32.MapVirtualKeyA
+    #     h_wnd = win32gui.FindWindow(windows_type, windows_name)
+    #     win32gui.ShowWindow(h_wnd, win32con.SW_RESTORE)
+    #     time.sleep(.5)
+    #     win32gui.SetActiveWindow(h_wnd)
+    #     time.sleep(.5)
+    #     win32gui.SetForegroundWindow(h_wnd)
+    #     time.sleep(.5)
+    #     win32api.keybd_event(win32con.VK_F5, MAP_KEYS(116, 0), 0, 0)  # 按下 F5
+    #     win32api.keybd_event(win32con.VK_F5, MAP_KEYS(116, 0), win32con.WM_KEYUP, 0)
 
-    def call_uibot(self):
+def main(local_time):
 
-        source_path = r"C:\Users\20945\Desktop\locked.txt"
-        if not os.path.exists(source_path):
-            with open(source_path, mode='w', encoding="utf-8") as f:
-                f.write("1")
-
-        windows_type = "Chrome_WidgetWin_1"
-        windows_name = "UiBot Creator"
-        MAP_KEYS = windll.user32.MapVirtualKeyA
-        h_wnd = win32gui.FindWindow(windows_type, windows_name)
-        win32gui.ShowWindow(h_wnd, win32con.SW_RESTORE)
-        time.sleep(.5)
-        win32gui.SetActiveWindow(h_wnd)
-        time.sleep(.5)
-        win32gui.SetForegroundWindow(h_wnd)
-        time.sleep(.5)
-        win32api.keybd_event(win32con.VK_F5, MAP_KEYS(116, 0), 0, 0)  # 按下 F5
-        win32api.keybd_event(win32con.VK_F5, MAP_KEYS(116, 0), win32con.WM_KEYUP, 0)
-
-def main():
-    local_time = time.strftime("%Y-%m-%d", time.localtime())
-    local_time = '2022-08-18'
     operation = Operation(local_time)
     # operation.call_uibot()
     # while 1:
     #     if not os.path.exists(r"C:\Users\20945\Desktop\locked.txt"):
     #         operation.icp_lists()
+
     # operation.check_data()
+    # operation.match_peer()
     operation.web()
+
             # operation.tyc_data_match()
 
 if __name__ == '__main__':
@@ -367,5 +405,7 @@ if __name__ == '__main__':
     # scheduler = BlockingScheduler()
     # scheduler.add_job(main, 'cron', day ='1-31', hour=23, minute=10)
     # scheduler.start()
-    main()
+    # local_time = time.strftime("%Y-%m-%d", time.localtime())
+    local_time = '2022-08-22'
+    main(local_time)
 
