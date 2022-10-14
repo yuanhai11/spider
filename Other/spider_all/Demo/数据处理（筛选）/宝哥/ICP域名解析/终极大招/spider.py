@@ -251,8 +251,7 @@ def check_data():
 def icp_lists():
     head = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
-        'cookie':'qHistory=aHR0cDovL2lwLnRvb2wuY2hpbmF6LmNvbV9JUC9JUHY25p+l6K+i77yM5pyN5Yqh5Zmo5Zyw5Z2A5p+l6K+i; cz_statistics_visitor=b843c099-69ba-6c07-2bcb-7d8c63e0471a; Hm_lvt_ca96c3507ee04e182fb6d097cb2a1a4c=1660814544; .AspNetCore.Antiforgery.ZLR_yHWNBdY=CfDJ8CdB96UITKRDua5BVQevwLd9T1wXvbqyGUOhmnIsbErTj6fYPLJcxXr_xEPA4rg3cg8fRAm1w1WBQIqz2YD1pFbOhxI00sI01i_kXQZIzxmARVp8qsIjjuoLwBoFwGbRZBGdZodVuh5-sSKacX0Jw8M; .AspNetCore.Antiforgery.2htDGZ9yTBg=CfDJ8OoHP14mz-dHp2dqJHqKMe3M40CIeoB1m7rq1qFQNYx7aGM6dwJ1hbW3A5N4JsEYsXE8_26jc3XVduqYCuW7iYQRky7JzF8NJSupWGDJLsXpqysoIPdI3ToIhOp_S_a_1AcPzBKHeuJT1FHOouilmJ4; ucvalidate=da8a0cc3-ea73-ea1b-fa68-0e88961742f4; bbsmax_user=4b338198-3047-ff90-5d7a-68d364332147; Hm_lpvt_ca96c3507ee04e182fb6d097cb2a1a4c=1660822854; .AspNetCore.Session=CfDJ8H1kdc4oNblDm54kfKYIvKfrWtGHr%2BWPXoisfjL4du7vkN0J6UpCLytn8pfsOezI0rgV3eIwF97kNvh2lBNXIXGuPt6piroFRGCAYcTz2X%2Fxuqry2bc1MTJn%2FN0DacLsUQSZdZ%2FE5aanNtYshFwkf7enToRKTKcJJpOXmJphxo3G'
-
+        'cookie':'qHistory=aHR0cDovL2lwLnRvb2wuY2hpbmF6LmNvbV9JUC9JUHY25p+l6K+i77yM5pyN5Yqh5Zmo5Zyw5Z2A5p+l6K+i; cz_statistics_visitor=b843c099-69ba-6c07-2bcb-7d8c63e0471a; Hm_lvt_ca96c3507ee04e182fb6d097cb2a1a4c=1665215935; .AspNetCore.Antiforgery.ZLR_yHWNBdY=CfDJ8CdB96UITKRDua5BVQevwLf2x0wdHuAG1d97XahJB8o2Bvq6xdkpAvmmprnrIVOotDWYczR2tLhuuiYli7BtWEs7I0Jw8tJwLjMJbRbLRRhr9ZLkR1AIVgFwMVxgC0QTw1sdqEJJyjI3Lozftjd-KoA; .AspNetCore.Antiforgery.2htDGZ9yTBg=CfDJ8PZm3nqXZ65HpM_OWqp-zsSfmnTXi_whnzCaQIzUNj7DJGtQYyM_Bi3cDGwnvloeWxj6UUKqESKnTEr9y2rzQWN3h0-Ye1ELDrVBU1I7ZrdHtrP-UHXFBJfbRbqIFZ4N-cUumaJfw_RAmWh26aBQjs4; ucvalidate=8d10e7f7-1727-2dc8-d596-24b3489b199a; bbsmax_user=0b0217e8-841d-a3cb-9433-6b010d5316d1; Hm_lpvt_ca96c3507ee04e182fb6d097cb2a1a4c=1665220177; .AspNetCore.Session=CfDJ8PZm3nqXZ65HpM%2FOWqp%2BzsTSyy8W8ApYkUF2SLneX3tMOTrjMiI8i2ccLzG7MFl9L7oNIwg5lmPqYxEbmp7hNVEOF1RplhMruJOt%2BrQgYH77oL95kMqeB7oM4pCAHSnaeiazMEQAaFHn9xLWIZShm7n65SuB7c%2FyD5E0SSdazIYp'
     }
     # 循环100次，因为最大限制100
     for page in range(1,101):
@@ -263,8 +262,14 @@ def icp_lists():
             'day':0
         }
         time.sleep(5)
-        tex = requests.post(url="http://icp.chinaz.com/Provinces/PageData",data=data,headers=head).json().get("data")
-        print(tex)
+        while 1:
+            try:
+                tex = requests.post(url="http://icp.chinaz.com/Provinces/PageData",data=data,headers=head).json().get("data")
+                print(tex)
+                break
+            except Exception:
+                continue
+
         if len(tex)==0:
             time.sleep(10)
             continue

@@ -24,13 +24,13 @@ def silence_event_loop_closed(func):
 
 sign_api = 'http://106.52.174.151:9000/jd/sign'  # sign接口地址
 
-url_count = 15  # 每个账号生成几条链接
+url_count = 5  # 每个账号生成几条链接
 each_url_resend = 1  # 每个链接复用几次
 push_plus_token = 'a9a912c174074dba97b6e51073c04980'  # 推送token http://www.pushplus.plus
 cks = [
     {
         'name': "祥腾",  # 账号2名
-        'ck': "pin=%E7%8E%8B%E7%BF%94%E8%85%BE;wskey=AAJjDujkAEDD_xU4HrZ-57Yy7NmsQBrc8nr7BDfGX8oJiEgWPiSZMDxKBdnbul8AXTj8j-8x9qYAG12l4K4ECoB6NX3qLenK;",
+        'ck': "pin=%E7%8E%8B%E7%BF%94%E8%85%BE;wskey=AAJjI9uIAEAkVRGRhlvTK1SgE1NPsXdF3V2gbihej1PajBmAuXN2Vpzb7Se6d7s4rgsm63IyxDSvXbk5ofeiwvUH-yMqRgPM;",
         'request': [],
         'is_active': 1  # 是否激活,0关闭
     }
