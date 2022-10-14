@@ -214,6 +214,14 @@ class Operation():
                     sum = [m['pN'] for m in mobiles]
 
                 reg_money = company_info_data.reg_money
+                if reg_money:
+                    reg_money = reg_money.replace("万",'').\
+                        replace("人",'')\
+                        .replace("民",'')\
+                        .replace("币",'')\
+                        .replace("美元",'')\
+                        .replace("港元",'')
+
                 insurance_num = company_info_data.insurance_num
                 business_project = company_info_data.business_project
                 company_type = company_info_data.company_type
@@ -276,43 +284,6 @@ class Operation():
                 # break
         self.session.commit()
 
-    '''
-    解析每天从UIBOT中获取的数据，以时间为分割，每天只能执行一次，
-    '''
-
-    def icp_lists(self):
-        with open(r"C:\Users\20945\Desktop\Uibot_project\ICP\data\2.txt", 'r', encoding='utf-8')as fp:
-            con = fp.read().replace('\n', '').replace(' ', '').replace('][', '----').replace("[", "").replace("]",
-                                                                                                              '').split(
-                '----')
-        merge_sum = []
-        for i in con:
-            sum = i.replace('"', "").split(',')
-
-            site_domain = sum[0]
-            company_name = sum[1]
-            company_type = sum[2]
-            main_page = sum[5]
-            site_license = sum[3]
-            site_name = sum[4]
-            verify = sum[6]
-
-            merge = company_name + site_license + verify
-
-            if verify != local_time or merge in merge_sum:
-                continue
-
-            times = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-            medi = table_icp_leads(site_domain=site_domain, company_name=company_name, company_type=company_type,
-                                   main_page=main_page, site_license=site_license, site_name=site_name,
-                                   verify_time=verify, gmt_created=times, gmt_updated=times)
-
-            self.session.add(medi)
-
-            print(sum)
-            merge_sum.append(merge)
-
-        self.session.commit()
 
     '''
      获取dns_provider字段
@@ -361,43 +332,71 @@ class Operation():
         self.session.close()
         driver.close()
 
-    '''
-    唤起uibot 并执行
-    '''
-    #
-    # def call_uibot(self):
-    #
-    #     source_path = r"C:\Users\20945\Desktop\locked.txt"
-    #     if not os.path.exists(source_path):
-    #         with open(source_path, mode='w', encoding="utf-8") as f:
-    #             f.write("1")
-    #
-    #     windows_type = "Chrome_WidgetWin_1"
-    #     windows_name = "UiBot Creator"
-    #     MAP_KEYS = windll.user32.MapVirtualKeyA
-    #     h_wnd = win32gui.FindWindow(windows_type, windows_name)
-    #     win32gui.ShowWindow(h_wnd, win32con.SW_RESTORE)
-    #     time.sleep(.5)
-    #     win32gui.SetActiveWindow(h_wnd)
-    #     time.sleep(.5)
-    #     win32gui.SetForegroundWindow(h_wnd)
-    #     time.sleep(.5)
-    #     win32api.keybd_event(win32con.VK_F5, MAP_KEYS(116, 0), 0, 0)  # 按下 F5
-    #     win32api.keybd_event(win32con.VK_F5, MAP_KEYS(116, 0), win32con.WM_KEYUP, 0)
+
+    def icp_lists(self):
+        head = {
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
+            'cookie':'qHistory=aHR0cDovL2lwLnRvb2wuY2hpbmF6LmNvbV9JUC9JUHY25p+l6K+i77yM5pyN5Yqh5Zmo5Zyw5Z2A5p+l6K+i; cz_statistics_visitor=b843c099-69ba-6c07-2bcb-7d8c63e0471a; Hm_lvt_ca96c3507ee04e182fb6d097cb2a1a4c=1665215935; .AspNetCore.Antiforgery.ZLR_yHWNBdY=CfDJ8CdB96UITKRDua5BVQevwLf2x0wdHuAG1d97XahJB8o2Bvq6xdkpAvmmprnrIVOotDWYczR2tLhuuiYli7BtWEs7I0Jw8tJwLjMJbRbLRRhr9ZLkR1AIVgFwMVxgC0QTw1sdqEJJyjI3Lozftjd-KoA; .AspNetCore.Antiforgery.2htDGZ9yTBg=CfDJ8PZm3nqXZ65HpM_OWqp-zsSfmnTXi_whnzCaQIzUNj7DJGtQYyM_Bi3cDGwnvloeWxj6UUKqESKnTEr9y2rzQWN3h0-Ye1ELDrVBU1I7ZrdHtrP-UHXFBJfbRbqIFZ4N-cUumaJfw_RAmWh26aBQjs4; ucvalidate=8d10e7f7-1727-2dc8-d596-24b3489b199a; bbsmax_user=0b0217e8-841d-a3cb-9433-6b010d5316d1; Hm_lpvt_ca96c3507ee04e182fb6d097cb2a1a4c=1665220177; .AspNetCore.Session=CfDJ8PZm3nqXZ65HpM%2FOWqp%2BzsTSyy8W8ApYkUF2SLneX3tMOTrjMiI8i2ccLzG7MFl9L7oNIwg5lmPqYxEbmp7hNVEOF1RplhMruJOt%2BrQgYH77oL95kMqeB7oM4pCAHSnaeiazMEQAaFHn9xLWIZShm7n65SuB7c%2FyD5E0SSdazIYp'
+        }
+        # 循环100次，因为最大限制100
+        for page in range(1,101):
+            data = {
+                'pageNo': page,
+                'pageSize': 20,
+                # day 代表当天
+                'day':0
+            }
+            time.sleep(5)
+            while 1:
+                try:
+                    tex = requests.post(url="http://icp.chinaz.com/Provinces/PageData",data=data,headers=head).json().get("data")
+                    print(tex)
+                    break
+                except Exception:
+                    continue
+
+            if len(tex)==0:
+                time.sleep(10)
+                continue
+            merge_sum = []
+
+            for sum in tex:
+                site_domain = sum.get("host")
+                company_name =sum.get("comName")
+                company_type =sum.get("typ")
+                main_page ="".join(sum.get("lstHp")).replace("[","").replace("]","")
+                site_license =sum.get("permit")
+                site_name =sum.get("webName")
+                verify =sum.get("verifyTime")
+
+                merge = company_name+site_license+verify
+
+                if verify != local_time or merge in merge_sum:
+                    continue
+
+                times = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+                medi = table_icp_leads(
+                    site_domain=site_domain,company_name=company_name,company_type=company_type,main_page=main_page,site_license=site_license,site_name=site_name,verify_time=verify,gmt_created=times,gmt_updated=times
+                    ,match_peer=0)
+                self.session.add(medi)
+                merge_sum.append(merge)
+
+            self.session.commit()
+            self.session.close()
+
 
 def main(local_time):
 
     operation = Operation(local_time)
-    # operation.call_uibot()
-    # while 1:
-    #     if not os.path.exists(r"C:\Users\20945\Desktop\locked.txt"):
-    #         operation.icp_lists()
-
-    # operation.check_data()
-    # operation.match_peer()
+    try:
+        operation.icp_lists()
+    except Exception:
+        pass
+    operation.check_data()
+    operation.match_peer()
     operation.web()
 
-            # operation.tyc_data_match()
+
 
 if __name__ == '__main__':
 
@@ -405,7 +404,8 @@ if __name__ == '__main__':
     # scheduler = BlockingScheduler()
     # scheduler.add_job(main, 'cron', day ='1-31', hour=23, minute=10)
     # scheduler.start()
-    # local_time = time.strftime("%Y-%m-%d", time.localtime())
-    local_time = '2022-08-22'
+    # 每天下午4点开始。
+    local_time = time.strftime("%Y-%m-%d", time.localtime())
+    # local_time = '2022-10-12'
     main(local_time)
 
