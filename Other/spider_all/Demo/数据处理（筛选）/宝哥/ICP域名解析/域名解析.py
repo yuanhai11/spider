@@ -40,7 +40,7 @@ class Operation():
         }
 
     '''
-    请求代理
+    请求代理 
     '''
 
     def dl(self):
@@ -304,7 +304,7 @@ class Operation():
         options.add_experimental_option('useAutomationExtension', False)
         # 以设定好的方式打开谷歌浏览器
         driver = webdriver.Chrome(
-            executable_path=r'C:\Users\20945\Downloads\Compressed\chromedriver_win32_2\chromedriver.exe',
+            executable_path=r'C:\Users\20945\Downloads\Compressed\chromedriver_win32_4\chromedriver.exe',
             options=options)
         driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
             "source": """
@@ -314,12 +314,36 @@ class Operation():
          """
         })
         companys = self.session.query(table_icp_leads).filter(
-            and_(table_icp_leads.verify_time == self.local_time, table_icp_leads.site_domain != None)).all()
+            and_(table_icp_leads.verify_time == self.local_time, table_icp_leads.site_domain != None
+                 ,table_icp_leads.phone != None,
+                 table_icp_leads.social_staff_num > 2,
+                 table_icp_leads.eg_capital > 100
+                 )).all()
+
         for company in companys:
             id = company.id
             domain = "https://whois.chinaz.com/" + company.site_domain
             driver.get(domain)
-            time.sleep(7)
+            time.sleep(3)
+            try:
+                ele_lists = driver.find_element_by_xpath('//div[@class="block ball"]/span')
+                text = ele_lists.text
+                print(domain, text)
+            except Exception:
+                continue
+            con = self.session.query(table_icp_leads).filter(table_icp_leads.id == id).first()
+            con.dns_provider = text
+            self.session.commit()
+
+        companys = self.session.query(table_icp_leads).filter(
+            and_(table_icp_leads.verify_time == self.local_time, table_icp_leads.site_domain != None
+                 ,table_icp_leads.dns_provider == None,
+                 )).all()
+        for company in companys:
+            id = company.id
+            domain = "https://whois.chinaz.com/" + company.site_domain
+            driver.get(domain)
+            time.sleep(3)
             try:
                 ele_lists = driver.find_element_by_xpath('//div[@class="block ball"]/span')
                 text = ele_lists.text
@@ -336,7 +360,7 @@ class Operation():
     def icp_lists(self):
         head = {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
-            'cookie':'qHistory=aHR0cDovL2lwLnRvb2wuY2hpbmF6LmNvbV9JUC9JUHY25p+l6K+i77yM5pyN5Yqh5Zmo5Zyw5Z2A5p+l6K+i; cz_statistics_visitor=b843c099-69ba-6c07-2bcb-7d8c63e0471a; Hm_lvt_ca96c3507ee04e182fb6d097cb2a1a4c=1665215935; .AspNetCore.Antiforgery.ZLR_yHWNBdY=CfDJ8CdB96UITKRDua5BVQevwLf2x0wdHuAG1d97XahJB8o2Bvq6xdkpAvmmprnrIVOotDWYczR2tLhuuiYli7BtWEs7I0Jw8tJwLjMJbRbLRRhr9ZLkR1AIVgFwMVxgC0QTw1sdqEJJyjI3Lozftjd-KoA; .AspNetCore.Antiforgery.2htDGZ9yTBg=CfDJ8PZm3nqXZ65HpM_OWqp-zsSfmnTXi_whnzCaQIzUNj7DJGtQYyM_Bi3cDGwnvloeWxj6UUKqESKnTEr9y2rzQWN3h0-Ye1ELDrVBU1I7ZrdHtrP-UHXFBJfbRbqIFZ4N-cUumaJfw_RAmWh26aBQjs4; ucvalidate=8d10e7f7-1727-2dc8-d596-24b3489b199a; bbsmax_user=0b0217e8-841d-a3cb-9433-6b010d5316d1; Hm_lpvt_ca96c3507ee04e182fb6d097cb2a1a4c=1665220177; .AspNetCore.Session=CfDJ8PZm3nqXZ65HpM%2FOWqp%2BzsTSyy8W8ApYkUF2SLneX3tMOTrjMiI8i2ccLzG7MFl9L7oNIwg5lmPqYxEbmp7hNVEOF1RplhMruJOt%2BrQgYH77oL95kMqeB7oM4pCAHSnaeiazMEQAaFHn9xLWIZShm7n65SuB7c%2FyD5E0SSdazIYp'
+            'cookie':'cz_statistics_visitor=b843c099-69ba-6c07-2bcb-7d8c63e0471a; qHistory=aHR0cDovL3dob2lzLmNoaW5hei5jb20vX1dob2lz5p+l6K+ifGh0dHA6Ly9pcC50b29sLmNoaW5hei5jb21fSVAvSVB2Nuafpeivou+8jOacjeWKoeWZqOWcsOWdgOafpeivog==; __bid_n=183d631626e89a08254207; .AspNetCore.Antiforgery.2htDGZ9yTBg=CfDJ8AdiD4ZOsAtHkpahMRR1T64-nwoMoAIpJwWd41AkLWFQlUDaPn34kYIrQtGh9xVKH_EdObQcxjQbxJ3EkUVrHtcO2YHawCA9pQVjwhbiGNgeXpWZ8cUzXaM-l8Cx5BmzVWFiKButy7F04SgqadmY_3c; Hm_lvt_ca96c3507ee04e182fb6d097cb2a1a4c=1665745823,1666086142,1667455427,1667878035; ucvalidate=fa6b7674-7028-6493-011a-ad0007cd90d6; toolUserGrade=F4378AC40164ECEFBBA722273EBE9DB3052713BC5A8D18DB025214970CFEF4E8FAA7BF2E1230AFC6017487F075E3D2DBCDDF6344EF96CCB1; bbsmax_user=221a7c9c-b0a9-dfd3-7dbc-7e01bff41813; .AspNetCore.Antiforgery.ZLR_yHWNBdY=CfDJ8DeKtxYi9PZDlMLEsemar02Hfu1tR8zl01DDKK7Zpx6CaOLSibmF6n7zbOAD3089bkcaCZ2rZopSAgdGAg92_u-uWXO25X31BslXHDycLjtJH-RRDEkFVqzZw8zHtNSQuYg4Q9kqwQECtjPa-cBOo98; Hm_lpvt_ca96c3507ee04e182fb6d097cb2a1a4c=1667878116'
         }
         # 循环100次，因为最大限制100
         for page in range(1,101):
@@ -344,7 +368,7 @@ class Operation():
                 'pageNo': page,
                 'pageSize': 20,
                 # day 代表当天
-                'day':0
+                'day':1
             }
             time.sleep(5)
             while 1:
@@ -353,6 +377,8 @@ class Operation():
                     print(tex)
                     break
                 except Exception:
+                    print("page:【{}】 be in trouble".format(page))
+                    time.sleep(8)
                     continue
 
             if len(tex)==0:
@@ -371,7 +397,7 @@ class Operation():
 
                 merge = company_name+site_license+verify
 
-                if verify != local_time or merge in merge_sum:
+                if verify != self.local_time or merge in merge_sum:
                     continue
 
                 times = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -385,8 +411,11 @@ class Operation():
             self.session.close()
 
 
-def main(local_time):
+def main():
+    local_time = time.strftime("%Y-%m-%d", time.localtime())
+    # local_time = "2022-11-15"
 
+    # 每天下午4点开始。
     operation = Operation(local_time)
     try:
         operation.icp_lists()
@@ -400,12 +429,8 @@ def main(local_time):
 
 if __name__ == '__main__':
 
-    # from apscheduler.schedulers.blocking import BlockingScheduler
-    # scheduler = BlockingScheduler()
-    # scheduler.add_job(main, 'cron', day ='1-31', hour=23, minute=10)
-    # scheduler.start()
-    # 每天下午4点开始。
-    local_time = time.strftime("%Y-%m-%d", time.localtime())
-    # local_time = '2022-10-12'
-    main(local_time)
-
+    from apscheduler.schedulers.blocking import BlockingScheduler
+    scheduler = BlockingScheduler()
+    scheduler.add_job(main, 'cron', day ='1-31', hour=17, minute=42)
+    # scheduler.add_job(main, 'cron', day ='1-31', hour=9, minute=2)
+    scheduler.start()
