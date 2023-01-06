@@ -25,9 +25,48 @@ class table_icp_leads(Base):
     company_org_type = Column(String(256))
     phone_source = Column(String(256))
     match_peer = Column(String(256))
+    state = Column(String(256))
+
+    have_icp = Column(String(256))
+    have_second_busi = Column(String(256))
+    have_busi = Column(String(256))
+    have_year = Column(String(256))
+    have_busi_year = Column(String(256))
+    have_net = Column(String(256))
     gmt_created = Column(String(256))
     gmt_updated = Column(String(256))
 
+class table_icp_leads_model(Base):
+    # 表的名字:
+    __tablename__ = 'icp_leads_model'
+    id = Column(Integer(), primary_key=True, autoincrement=True)
+    site_domain = Column(String(256))
+    company_name = Column(String(256))
+    main_page = Column(String(256))
+    site_license = Column(String(256))
+    site_name = Column(String(256))
+
+    company_type = Column(String(256))
+    phone = Column(String(256))
+    verify_time = Column(String(256))
+    dns_provider = Column(String(256))
+
+    eg_capital = Column(String(256))
+    social_staff_num = Column(String(256))
+    business_scope = Column(String(256))
+    company_org_type = Column(String(256))
+    phone_source = Column(String(256))
+    match_peer = Column(String(256))
+
+    have_icp = Column(String(256))
+    have_second_busi = Column(String(256))
+    have_busi = Column(String(256))
+    have_year = Column(String(256))
+    have_busi_year = Column(String(256))
+    have_net = Column(String(256))
+
+    gmt_created = Column(String(256))
+    gmt_updated = Column(String(256))
 
 
 class table_company_info(Base):
