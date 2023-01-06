@@ -6,13 +6,15 @@ from sqlalchemy.ext.declarative import declarative_base
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from ctypes import windll
-from model.table import table_icp_leads,table_company_info,table_company_contact,table_data_wheel
+from model.table import table_icp_leads, table_company_info, table_company_contact, table_data_wheel
 
-import time, re, json,os
+import time, re, json, os
 import requests
 import datetime
 # 加入pywintypes，打包成功
 import pywintypes
+
+
 # import win32api
 # import win32con
 # import win32gui
@@ -20,7 +22,7 @@ import pywintypes
 
 class Operation():
 
-    def __init__(self,local_time):
+    def __init__(self, local_time):
         # 创建对象的基类:
         self.Base = declarative_base()
         # 初始化数据库连接:
@@ -40,7 +42,7 @@ class Operation():
         }
 
     '''
-    请求代理
+    请求代理 
     '''
 
     def dl(self):
@@ -215,12 +217,12 @@ class Operation():
 
                 reg_money = company_info_data.reg_money
                 if reg_money:
-                    reg_money = reg_money.replace("万",'').\
-                        replace("人",'')\
-                        .replace("民",'')\
-                        .replace("币",'')\
-                        .replace("美元",'')\
-                        .replace("港元",'')
+                    reg_money = reg_money.replace("万", ''). \
+                        replace("人", '') \
+                        .replace("民", '') \
+                        .replace("币", '') \
+                        .replace("美元", '') \
+                        .replace("港元", '')
 
                 insurance_num = company_info_data.insurance_num
                 business_project = company_info_data.business_project
@@ -238,7 +240,7 @@ class Operation():
                     i.business_scope = business_project
                     i.company_org_type = company_type
                     i.phone = sum
-                    if sum=='':
+                    if sum == '':
                         i.phone = None
                     if mobiles == None:
                         i.phone_source = None
@@ -257,7 +259,7 @@ class Operation():
             table_icp_leads.phone != None
         )).all()
 
-        match = self.session.query(table_company_contact).filter(table_company_contact.match_peer==1).all()
+        match = self.session.query(table_company_contact).filter(table_company_contact.match_peer == 1).all()
         res = ','.join([i.tel for i in match])
         for q in companys:
             phone = str(q.phone)
@@ -267,7 +269,7 @@ class Operation():
                     print("no")
                     continue
                 q.match_peer = 1
-                print("dhaoif",q.company_name)
+                print("dhaoif", q.company_name)
                 break
 
         self.session.commit()
@@ -280,10 +282,33 @@ class Operation():
             )).all()
             if match:
                 q.match_peer = 1
-                print("dhaoif",q.company_name)
+                print("dhaoif", q.company_name)
                 # break
         self.session.commit()
 
+
+
+    def field_choice(self):
+        companys = self.session.query(table_icp_leads).filter(and_(
+            table_icp_leads.verify_time == self.local_time),table_icp_leads.eg_capital!=None).all()
+
+        for q in companys:
+            try:
+                eg_capital = int(q.eg_capital)
+                busi = q.business_scope
+                if eg_capital > 100 and ('电信业务' in busi or '增值电信业务' in busi or '第二类增值电信业务' in busi):
+                    q.have_second_busi = 1
+                    print("1",q.company_name)
+                if eg_capital > 1000 and ('电信业务' in busi or '增值电信业务' in busi):
+                    q.have_busi = 1
+                    print("11")
+                if eg_capital > 100 and ('网络文化经营' in busi):
+                    q.have_net = 1
+                    print("111")
+            except Exception:
+                continue
+            finally:
+                self.session.commit()
 
     '''
      获取dns_provider字段
@@ -304,7 +329,7 @@ class Operation():
         options.add_experimental_option('useAutomationExtension', False)
         # 以设定好的方式打开谷歌浏览器
         driver = webdriver.Chrome(
-            executable_path=r'C:\Users\20945\Downloads\Compressed\chromedriver_win32_2\chromedriver.exe',
+            executable_path=r'C:\Users\20945\Downloads\Compressed\chromedriver_win32_4\chromedriver.exe',
             options=options)
         driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
             "source": """
@@ -314,13 +339,41 @@ class Operation():
          """
         })
         companys = self.session.query(table_icp_leads).filter(
-            and_(table_icp_leads.verify_time == self.local_time, table_icp_leads.site_domain != None)).all()
+            and_(table_icp_leads.verify_time == self.local_time, table_icp_leads.site_domain != None
+                 , table_icp_leads.phone != None,
+                 table_icp_leads.social_staff_num > 2,
+                 table_icp_leads.eg_capital > 100
+                 )).all()
+
+        for company in companys:
+            try:
+                id = company.id
+                domain = "https://whois.chinaz.com/" + company.site_domain
+                driver.get(domain)
+                time.sleep(3)
+                try:
+                    ele_lists = driver.find_element_by_xpath('//div[@class="block ball"]/span')
+                    text = ele_lists.text
+                    print(domain, text)
+                except Exception:
+                    continue
+                con = self.session.query(table_icp_leads).filter(table_icp_leads.id == id).first()
+                con.dns_provider = text
+                con.state = 0
+                self.session.commit()
+            except Exception:
+                continue
+
+        companys = self.session.query(table_icp_leads).filter(
+            and_(table_icp_leads.verify_time == self.local_time, table_icp_leads.site_domain != None
+                 , table_icp_leads.dns_provider == None,
+                 )).all()
         for company in companys:
             id = company.id
-            domain = "https://whois.chinaz.com/" + company.site_domain
-            driver.get(domain)
-            time.sleep(7)
             try:
+                domain = "https://whois.chinaz.com/" + company.site_domain
+                driver.get(domain)
+                time.sleep(3)
                 ele_lists = driver.find_element_by_xpath('//div[@class="block ball"]/span')
                 text = ele_lists.text
                 print(domain, text)
@@ -328,84 +381,94 @@ class Operation():
                 continue
             con = self.session.query(table_icp_leads).filter(table_icp_leads.id == id).first()
             con.dns_provider = text
+            con.state=0
             self.session.commit()
         self.session.close()
         driver.close()
 
-
     def icp_lists(self):
         head = {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
-            'cookie':'qHistory=aHR0cDovL2lwLnRvb2wuY2hpbmF6LmNvbV9JUC9JUHY25p+l6K+i77yM5pyN5Yqh5Zmo5Zyw5Z2A5p+l6K+i; cz_statistics_visitor=b843c099-69ba-6c07-2bcb-7d8c63e0471a; Hm_lvt_ca96c3507ee04e182fb6d097cb2a1a4c=1665215935; .AspNetCore.Antiforgery.ZLR_yHWNBdY=CfDJ8CdB96UITKRDua5BVQevwLf2x0wdHuAG1d97XahJB8o2Bvq6xdkpAvmmprnrIVOotDWYczR2tLhuuiYli7BtWEs7I0Jw8tJwLjMJbRbLRRhr9ZLkR1AIVgFwMVxgC0QTw1sdqEJJyjI3Lozftjd-KoA; .AspNetCore.Antiforgery.2htDGZ9yTBg=CfDJ8PZm3nqXZ65HpM_OWqp-zsSfmnTXi_whnzCaQIzUNj7DJGtQYyM_Bi3cDGwnvloeWxj6UUKqESKnTEr9y2rzQWN3h0-Ye1ELDrVBU1I7ZrdHtrP-UHXFBJfbRbqIFZ4N-cUumaJfw_RAmWh26aBQjs4; ucvalidate=8d10e7f7-1727-2dc8-d596-24b3489b199a; bbsmax_user=0b0217e8-841d-a3cb-9433-6b010d5316d1; Hm_lpvt_ca96c3507ee04e182fb6d097cb2a1a4c=1665220177; .AspNetCore.Session=CfDJ8PZm3nqXZ65HpM%2FOWqp%2BzsTSyy8W8ApYkUF2SLneX3tMOTrjMiI8i2ccLzG7MFl9L7oNIwg5lmPqYxEbmp7hNVEOF1RplhMruJOt%2BrQgYH77oL95kMqeB7oM4pCAHSnaeiazMEQAaFHn9xLWIZShm7n65SuB7c%2FyD5E0SSdazIYp'
+            'cookie':'__bid_n=183d631626e89a08254207; cz_statistics_visitor=839b1eaf-9067-a1e2-e7eb-94bf92e7ff8a; qHistory=aHR0cDovL2lwLnRvb2wuY2hpbmF6LmNvbV9JUC9JUHY25p+l6K+i77yM5pyN5Yqh5Zmo5Zyw5Z2A5p+l6K+ifGh0dHA6Ly90b29sLmNoaW5hei5jb21f56uZ6ZW/5bel5YW3; Hm_lvt_ca96c3507ee04e182fb6d097cb2a1a4c=1670569158,1670633987,1672711960; .AspNetCore.Antiforgery.2htDGZ9yTBg=CfDJ8AdiD4ZOsAtHkpahMRR1T64a9ByQ_W-6NdZhAsPhvWSyzxUiA01_IotHLZEHW92PPpaNa0zlefPN54JAs6weCt7I8j-gZ7fZ2brACxPHTc3oketY-u_QQ4-nZZcdmKcJbVP-X7ucCIaJfvDUyArarxI; ucvalidate=b9df0cd4-31b9-d382-9819-68a24f26fc3e; toolUserGrade=F4378AC40164ECEFC4A35227B1A96224973EEC982A99FE7680F19C40B25CC12054487E0BA748812D4F6CAD1C5CA3BF05; bbsmax_user=831e0bf9-6ff4-d353-1ccc-5eb730ce21b8; Hm_lpvt_ca96c3507ee04e182fb6d097cb2a1a4c=1672711985'
         }
         # 循环100次，因为最大限制100
-        for page in range(1,101):
+        for page in range(1, 101):
             data = {
                 'pageNo': page,
                 'pageSize': 20,
                 # day 代表当天
-                'day':0
+                'day': 0
             }
             time.sleep(5)
             while 1:
                 try:
-                    tex = requests.post(url="http://icp.chinaz.com/Provinces/PageData",data=data,headers=head).json().get("data")
+                    tex = requests.post(url="https://icp.chinaz.com/Provinces/PageData", data=data,
+                                        headers=head).json().get("data")
                     print(tex)
                     break
-                except Exception:
+                except Exception as e:
+                    print("page:【{}】 be in trouble{}".format(page,str(e)))
+                    time.sleep(8)
                     continue
 
-            if len(tex)==0:
+            if len(tex) == 0:
                 time.sleep(10)
                 continue
             merge_sum = []
 
             for sum in tex:
                 site_domain = sum.get("host")
-                company_name =sum.get("comName")
-                company_type =sum.get("typ")
-                main_page ="".join(sum.get("lstHp")).replace("[","").replace("]","")
-                site_license =sum.get("permit")
-                site_name =sum.get("webName")
-                verify =sum.get("verifyTime")
+                company_name = sum.get("comName")
+                company_type = sum.get("typ")
+                main_page = "".join(sum.get("lstHp")).replace("[", "").replace("]", "")
+                site_license = sum.get("permit")
+                site_name = sum.get("webName")
+                verify = sum.get("verifyTime")
 
-                merge = company_name+site_license+verify
+                merge = company_name + site_license + verify
 
-                if verify != local_time or merge in merge_sum:
+                if verify != self.local_time or merge in merge_sum:
                     continue
 
                 times = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-                medi = table_icp_leads(
-                    site_domain=site_domain,company_name=company_name,company_type=company_type,main_page=main_page,site_license=site_license,site_name=site_name,verify_time=verify,gmt_created=times,gmt_updated=times
-                    ,match_peer=0)
-                self.session.add(medi)
+                try:
+                    medi = table_icp_leads(
+                        site_domain=site_domain, company_name=company_name, company_type=company_type,
+                        main_page=main_page, site_license=site_license, site_name=site_name, verify_time=verify,
+                        gmt_created=times, gmt_updated=times
+                        , state=1,match_peer=0,have_icp=1)
+                    self.session.add(medi)
+                except Exception as e:
+                    print(e)
+                    continue
                 merge_sum.append(merge)
 
             self.session.commit()
             self.session.close()
 
 
-def main(local_time):
+def main():
+    local_time = time.strftime("%Y-%m-%d", time.localtime())
+    # local_time = "2022-11-24"
 
+    # 每天下午4点开始。
     operation = Operation(local_time)
     try:
         operation.icp_lists()
-    except Exception:
+    except Exception as e:
+        print(e)
         pass
     operation.check_data()
     operation.match_peer()
+    operation.field_choice()
     operation.web()
 
 
 
 if __name__ == '__main__':
 
-    # from apscheduler.schedulers.blocking import BlockingScheduler
-    # scheduler = BlockingScheduler()
-    # scheduler.add_job(main, 'cron', day ='1-31', hour=23, minute=10)
+    from apscheduler.schedulers.blocking import BlockingScheduler
+    scheduler = BlockingScheduler()
+    scheduler.add_job(main, 'cron', day='1-31', hour=15, minute=21)
     # scheduler.start()
-    # 每天下午4点开始。
-    local_time = time.strftime("%Y-%m-%d", time.localtime())
-    # local_time = '2022-10-12'
-    main(local_time)
-
+    main()
